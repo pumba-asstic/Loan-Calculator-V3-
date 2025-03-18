@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <link rel="stylesheet" href="calculator.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Loan Calculator</h2>
+        <label for ="loanAmount">loan Amount (R):</label>
+        <input type="number" id="loanAmount" value="1000" min="1000" max="15000">
+        <input type = "range" id="loanSlider" min="1000" max="15000" step="1000" value=" 1000" oninput="syncLoan()">
+
+
+        <label for="repaymentPeriod"> Repayment Period (months):</label>
+        <input type="number" id="repaymentPeriod" value="6" min="1" max="6">
+
+        <button onclick="calculateMinRepayment()">Show Min repayment</button>
+        
+        <div class="result" id="result"></div>
+        <div class="result" id="minRepaymentResults"></div>
+        <a id="applyButton" href="Application form.html"><button>Apply Now</button></a>
+    </div>
+
+
+
+    <script>
+        function syncLoan(){
+    document.getElementById("loanAmount").value = document.getElementById("loanSlider").value;
+}
+syncLoan ()
+
+
+
+function calculateMinRepayment(){
+    let loanAmount =parseFloat(document.getElementById("loanAmount").value);
+    let repaymentPeriod =parseFloat(document.getElementById("repaymentPeriod").value);
+    let monthlyInterestRate =0.01;
+    /*let applyButton =document.getElementById("applyButton");
+
+    applyButton.disabled=false;
+    appplyButton.href ="application form.html";
+    applyButton.style.backgroundColor ="";
+    applyButton.style.color="";*/
+
+
+    if(repaymentPeriod >6){
+        document.getElementById("minRepaymentResults").innerHTML = 
+        `<p style ="colour : red;"> Error: Repayment Period cannot exceed 6 months.</p>`;
+        /*applyButton.disabled= true;
+        applyButton.removeAttribute("href");
+        applyButton.style.backgroundColor= "grey";
+        applyButton.style.color="white";*/
+        return;
+    }
+     if(repaymentPeriod <1){
+        document.getElementById("minRepaymentResults").innerHTML =
+        `<p style:"colour: red;"> Error :Repayment period cannot be less than 1 month.</p>`;
+       /*applyButton.disabled= true;
+        applyButton.removeAttribute("href");
+        applyButton.style.backgroundColor= "grey";
+        applyButton.style.color="white";*/
+     }
+    
+     if (loanAmount <1000){
+            document.getElementById("minRepaymentResults").innerHTML=
+            `<p style= "colour: red;">Error: Loan ammount cannot be less than R 1000.</p>`;
+            /*applyButton.disabled= true;
+        applyButton.removeAttribute("href");
+        applyButton.style.backgroundColor= "grey";
+        applyButton.style.color="white";*/
+        return;
+     }
+
+     if(loanAmount > 15000){
+        document.getElementById("minRepaymentResults").innerHTML=
+        `<p style= "colour: red;"> Error : Loan ammount cannot exceed R 15000.</p>`;
+        /*applyButton.disabled= true;
+        applyButton.removeAttribute("href");
+        applyButton.style.backgroundColor= "grey";
+        applyButton.style.color="white";*/
+        return;
+     }
+
+
+    let minMonthlyRepayment =(loanAmount * monthlyInterestRate)/(1- Math.pow(1+ monthlyInterestRate, -repaymentPeriod));
+
+    minMonthlyRepayment =minMonthlyRepayment.toFixed(2);
+
+    let minRepaymentPeriod= Math.ceil( loanAmount/ loanAmount);
+
+    document.getElementById("minRepaymentResults").innerHTML= 
+    `<p><strong>Minium Monthly Repayment:</strong> R${minMonthlyRepayment}   p/month</p>`;
+    calculateAffordability(loanAmount,repaymentPeriod);
+}
+ function calculateAffordability(loanAmount,repaymentPeriod){
+// mock API Experian basic mock API
+    let creditScore =math.floor(math.random()*(850-300+1)+300); // range 300 -850
+    let affordability;
+    let risk;
+
+
+    if(creditScore >=700){
+        affordability =Math.floor(Math.random()*(100-80+1)+80); // range 80- 100
+        risk = Math.floor(Math.random()*(10-1+1)+1); // range 1-10
+    } else if(creditScore >=600){
+        affordability =Math.floor(Math.random()*(80-60+1)+60); // range 60-80
+        risk = Math.floor(Math.random()*(10-1+1)+1); // range 1-10
+    } else if(creditScore >=500){
+        affordability =Math.floor(Math.random()*(60-40+1)+40); // range 40-60
+        risk = Math.floor(Math.random()*(10-1+1)+1); // range 1-10
+    } else {
+        affordability =Math.floor(Math.random()*(40-20+1)+20); // range 20-40
+        risk = Math.floor(Math.random()*(10-1+1)+1); // range 1-10
+    }
+
+    document.getElementById("result").innerHTML=
+    `<p><strong>Affordability Score : </strong> ${affordability}%</p>
+    <p><strong>Risk Percentage:</strong> ${risk}%</p>`;
+ }
+
+
+    </script>
+</body>  
+</html>

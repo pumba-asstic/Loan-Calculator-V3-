@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application</title>
+    <link rel="stylesheet" href="Application form.css">
+</head>
+<body>
+   <h2>Application Form</h2>
+    <p>
+        <ol> Upload Copy of Id document</ol>
+        <ol> Upload 3 months bank statements</ol>
+    </p>
+
+<br>
+<br>
+    <form>
+         <div class="form-group">
+        <label for="FirstName"> First Name: </label>
+        <input type="text" id="FirstName" name="FirstName" required>
+         </div>
+        
+         <div class="form-group">
+            <label for="LastName"> Last Name: </label>
+            <input type="text" id="LastName" name="LastName" required>
+         </div>
+
+        <div class="form-group">
+                <label for="idNumber"> ID number:</label>
+                <input type="number" id="idNumber" name="idNumber" required required ="limitIdLength(this)">
+                <div id ="idNumberError" style="color:red"></div>
+        </div>
+
+        <div class="form-group">
+            <label for="Email"> Email: </label>
+            <input type="email" id="Email" name="Email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="PhoneNumber"> Phone Number: </label>
+            <input type="number" id="PhoneNumber" name="PhoneNumber" required>
+        </div>
+
+        <div class="form-group">
+            <label for="loanAmount">Loan Amount (R):</label>
+            <input type="number" id="loanAmount" name="loanAmount" required>
+         </div>
+
+         <div class ="form-group full-width">
+            <label for="documentUpload">Upload Supporting Document:</label>
+            <input type="file" id="documentUpload" name="documentUpload" multiple accept=".pdf, .doc, .docx, .jpg,.jpeg,.png">
+            <small>Accepted file types: PDF, DOC, JPG, JPEG, PNG</small>
+         </div>
+    <button type="submit">Submit Application</button>
+    </form>
+    <script>
+        function limitIdLength(input){
+            if(input.value.length >13){
+                input.value =input.value.slice(0.13)
+                document.getElementById("idNumberError").textContent ="ID number must not exceed 13 numbers"
+            } else{
+                document.getElementById("idNumberError").textContent=""
+            }
+        }
+        function validateForm(){
+            const idNumberInput=document.getElementById("idNumebr");
+            if(idNumberInput.value.length !==13){
+                document.getElementById("idNumberError").textContent="ID number must be exactly 13 Numbers"
+                return false;
+            }
+        }
+        return true;
+
+/*async function calculateAffordability(){
+        let LoanAmount= document.getElementById("loanAmount").value;
+        let repaymentPeriod = document.getElementById("repaymentPeriod").value;
+
+    //mock API Experian 
+    let affordability=Math.floor(Math.random()*100);
+    let risk= Math.floor(Math.random()*100);
+
+    document.getElementById("result").innerHTML=
+    `<p><strong>Affordability Score:</strong> ${affordability}%</p>
+    <p><strong>Risk Percentage:</strong> ${risk}%</p>`;
+}*/
+
+    </script>
+</body>
+</html>
