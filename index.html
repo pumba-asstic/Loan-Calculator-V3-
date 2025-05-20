@@ -2,14 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Loan Calculator with Slider</title>
-  <style>body {
+  <title>Lift Off Lending</title>
+  <style>
+  body {
     font-family: Arial, sans-serif;
     padding: 40px;
     background-color: #f9f9f9;
     color: #333;
   }
+  footer{
+    text-align: center;
+    padding: 20px;
+    background-color: #003366;
+    color: white;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
   h2 {
+    text-align: center;
     color: #003366;
   }
 
@@ -21,7 +32,14 @@
       margin-bottom: 8px;
       font-weight: bold;
     }
-
+.ima{
+  width:100% ; 
+  height: auto;
+  margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;  
+}
     /* Shared slider styles */
     input[type="range"] {
       -webkit-appearance: none;
@@ -131,33 +149,43 @@
   }
 </style>
 </head>
+<nav></nav>
+
+</header>
 <body>
+<img src="/images/Picture 1.jpg">
 
+<div class="calculator-container">
 <h2>Loan Calculator</h2>
-
 <div class="input-group">
-  <label for="loanSlider">Select Loan Amount (R):</label>
+  <label for="loanAmountInput">Enter Loan Amount (R):</label>
   <input 
-    type="range" 
-    id="loanSlider" 
-    min="1" 
+    type="number" 
+    id="loanAmountDisplay"
+    id="loanAmountInput"
+    min="500" 
     max="15000" 
     step="100" 
     value="1000"
+    output="updatedLoanDisplay()"
+    oninput = "updatedLoandDisplay()"
   />
-  <span class="value" id="loanAmountDisplay">1 000</span>
+  <p> Enter an amount between R 500 and R 15000</p>
+  <span class="value" id="loanAmountDisplay">R 1 000</span>
+  <span class ="value" id="loanAmountFormattedDisplay">R 1 000</span> <!-- display span id changed-->
 </div>
 
 <div class="input-group">
-  <label for="termMonths">Repayment Term (months):</label>
+  <label for="termSlider">Repayment Term (months):</label>
   <input 
-    type="number" 
-    id="termMonths" 
+    type="range" 
+    id="termSlider"
     min="1" 
     max="60" 
     value="6"
   />
   <span class="value">months</span>
+  <span class="value" id="termMonthsDisplay"> 6 months</span>
 </div>
 
 <button class="calc-btn" onclick="calculateLoan()">Calculate Repayment</button> <!-- Changed button text -->
@@ -170,16 +198,16 @@
   <div class="include-label">Your monthly repayment includes:</div>
   <div class="breakdown">
     <div class="line-item">
-      <span>service fee</span>
-      <span>R <span id="serviceFeeResult">0.00</span></span>
+      <span>Initiation fee (once off)</span>
+      <span>R <span id="initiationFeeResult">0.00</span></span>
     </div>
     <div class="line-item">
-        <span>VAT on Fees (approx)</span> <!-- Added VAT display -->
-        <span>R <span id="vatResult">0.00</span></span>
+        <span>Service fee</span> <!-- Changed label to Service fee -->
+        <span>R <span id="serviceFeeResult">0.00</span></span>
       </div>
     <div class="line-item">
-      <span>Initiation fee (once-off)</span>
-      <span>R <span id="initiationFeeResult">0.00</span></span>
+      <span>VAT</span> <!-- Changed label to VAT -->
+      <span>R <span id="vatResult">0.00</span></span>
     </div>
     <div class="line-item" style="font-weight: bold; margin-top: 10px;"> <!-- Added Total Repayment -->
         <span>Total Amount Repayable</span>
@@ -188,17 +216,29 @@
   </div>
   <hr>
   <div class="disclaimer">
-    Your personal loan will be granted subject to credit and affordability criteria.
+    The amount we can lend you depends on your credit and affordability assessment
   </div>
   <a href="Application form copy.html"class="apply-btn">Apply Now</a>
 </div>
-    
+</div> 
   <script>
-    // update display when slider moves
-    const slider = document.getElementById('loanSlider');
+    /*update display when slider moves
+    const slider = document.getElementById('loanAmountDisplay');
     const display = document.getElementById('loanAmountDisplay');
-    const termInput = document.getElementById('termMonths');
+    const termInput = document.getElementById('termSlider');
     const resultsDiv = document.getElementById('results');
+    const errorDiv = document.getElementById('errorMessage');*/
+
+    const slider= documnet .getElementById('loanAmountDisplay');
+    const display = document.getElementById('loanAmountDisplay');
+    const termInput = document.getElementById('termSlider');
+
+
+    const loanAmountInput = document.getElementById('loanAmountInput');
+    const loanAmountFormattedDisplay =document.getElementById('loanAmountFormattedDisplay');
+    const termSlider =document.getElementById('termSlider');
+    const termMonthsDisplay =document.getElementById('termMonthsDisplay');
+    const resultsDiv = document .getElementById('results');
     const errorDiv = document.getElementById('errorMessage');
 
     // Function to format number with spaces
@@ -213,16 +253,50 @@ slider.addEventListener('input', () => {
   // Use parseFloat before formatting
   display.textContent = "R " + formatNumber(parseFloat(slider.value));
 });
+ return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
 
+//display updates 
+loanDisplay.textContent ="R" + formatNumber(parseFloat(loadInput.value));
+termDisplay.textContent = termSlider.value + " months"
+
+//loan amount display changes with input
+
+function updatedLoanDisplay(){
+  let value = parseFloat(loanAmountInput.value);
+  const minVal =parseFload(loanAmountInput.min);
+  const maxVal = parseFloat(loanAmountInput.max)
+
+  if ( isNaN(value)){
+    loanAmountFormattedDisplay.textContent = "R" =formatNumber(minVal);
+    return;
+  }
+  loanAmountFormattedDisplay.textContent ="R" +formatNumber(value);
+}
+ function updateTermDisplay(){
+  termMonthsDisplay.textContent = termSlider.value +"months";
+ }
+
+ updatedLoanDisplay();
+ updateTermDisplay();
+      
+ //event listerns 
+ loanAmountInput.addEventListener('input',updatedLoanDisplay);
+ termSlider.addEventListener('input', updateTermDisplay);
 
     function calculateLoan() {
       errorDiv.textContent = '';
       resultsDiv.style.display = 'none';
-      const loanAmount = parseFloat(slider.value);
-      const termMonths = parseInt(document.getElementById('termMonths').value, 10);
 
+      const loanAmount= parseFloat(loanAmountInput.value);
+      const termMonths= parseInt(termSlider.value,10);
+      //loan amount validation 
+      if (isNan(loanAmount)|| loanAmount <parseFloat(loanAmountInput.min)|| loanAmount> parseFloat(LoanAmountInput.max)){
+        errroDiv.textContent ='please enter a valid loan amount between R ${loanAmountInput.min} and  R${loanAmountInpout.max}';
+        loanAmountInput.focus();
+        return;
+      }
       if (isNaN(termMonths) || termMonths < 1) {
-        alert('Please enter a valid repayment term (at least 1 month).');
+        errorDiv.textContent= 'Please enter a valid repayment term (at least 1 month).';
         return;
       }
       const tiers = [
@@ -237,7 +311,7 @@ slider.addEventListener('input', () => {
       ];
 
       const initiationFee = 60;
-      const VAT_RATE = 0.155;
+      const VAT_RATE = 0.15; // 15% VAT
 
       let selectedTier = null;
       for (const tier of tiers) {
@@ -259,7 +333,6 @@ slider.addEventListener('input', () => {
 
      // --- Calculations (Using the logic from your original code, with corrections) ---
 
-      // NOTE: This interest calculation is likely simplified (simple total interest)
       const totalInterest = loanAmount * selectedTier.interestRate * termMonths; // Example: Simple interest over the term
 
       // NOTE: Assuming service fee is a total fee based on principal
@@ -287,6 +360,8 @@ slider.addEventListener('input', () => {
       resultsDiv.style.display = 'block';
     }
   </script>
-
 </body>
+<footer>
+  <a href="/legal documents/Terms and Conditions .pdf">Terms and Conditions</a> <br>  <a href="/legal documents/Privacy Statement.pdf">POPIA</a> <br> <i> Contact us:  or email us:<a href="info@liftofflending.co.za">info@liftofflending.co.za</a></i>
+</footer>
 </html>
