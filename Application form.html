@@ -6,137 +6,127 @@
   <title>Application Form</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      margin: 0;
-      padding: 20px;
-      color: #333;
-    }
-    .container {
-      /*max-width: 600px;*/
-      margin: 0 auto;
-      background-color: #fff;
-      padding: 30px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      border-radius: 8px;
-    }
-    h1, h2 {
-      text-align: center;
-      margin-bottom: 20px;
-      font-weight: normal;
-    }
-    h1 {
-      font-size: 1.5rem;
-      margin-top: 0;
-    }
-    form .field-group {
-      margin-bottom: 15px;
-    }
-    form label {
-      display: block;
-      margin-bottom: 5px;
-      font-size: 0.9rem;
-    }
-    form input {
-      width: 100%;
-      padding: 8px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-    }
-    .documents-section {
-      margin-top: 40px;
-      text-align: center;
-    }
-    .documents-section h2 {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
-    .doc-list {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 20px;
-      margin-bottom: 15px;
-    }
-    .doc-item {
-      flex: 1 1 calc(50% - 20px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .doc-item img {
-      width: 48px;
-      height: 48px;
-      margin-bottom: 8px;
-    }
-    .doc-item span {
-      font-size: 0.85rem;
-      text-align: center;
-    }
-    .doc-note {
-      font-size: 0.85rem;
-      color: #666;
-      margin-bottom: 30px;
-    }
-    .actions {
-      text-align: center;
-    }
-    .btn-submit {
-      background-color: #003366;
-      color: #fff;
-      border: none;
-      padding: 12px 24px;
-      font-size: 1rem;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    .back-link {
-      display: inline-block;
-      margin-top: 20px;
-      font-size: 0.9rem;
-      color: #003366;
-      text-decoration: none;
-    }
-    .checkbox-group{
-      display: flex;
-      align-items : center;
-      font-family: Arial, Helvetica, sans-serif;
-      margin:10px 0;
-    }
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 20px;
+  color: #333;
+}
+h1, h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: normal;
+}
+h1 {
+  font-size: 1.5rem;
+  margin-top: 0;
+}
+form .field-group {
+  margin-bottom: 15px;
+}
+form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+}
+form input {
+  width: 100%;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.documents-section {
+  margin-top: 40px;
+  text-align: center;
+}
+.documents-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+.doc-list {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+.doc-item {
+  flex: 1 1 calc(50% - 20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.doc-item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+}
+.doc-item span {
+  font-size: 0.85rem;
+  text-align: center;
+}
+.doc-note {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 30px;
+}
+.actions {
+  text-align: center;
+}
+.btn-submit {
+  background-color: #003366;
+  color: #fff;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.back-link {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #003366;
+  text-decoration: none;
+}
+.checkbox-group{
+  display: flex;
+  align-items : center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin:10px 0;
+}
 
-    .checkbox-group input[type="checkbox"]{
-      display:none;
-    }
+.checkbox-group input[type="checkbox"]{
+  display:none;
+}
 
-    .custom-checkbox{
-      width : 20px;
-      height :20px; 
-      border: 2px solid #333;
-      border-radius: 4px;
-      display: inline-block;
-      position: relative; 
-      cursor: pointer;
-      margin-right: 10px
-    }
-      .checkbox-group input[type=":checkbox"]:checked +label.custom-checkbox::after{
-      content: '';
-      position:absolute;
-      left: 5px;
-      top:1px;
-      width: 5px;
-      width: 6px;
-      height:10px;
-      border: solid #003366;
-      border-width: 0 2px 2px 0;
-      transform: rotate(45deg);
-    }
+.custom-checkbox{
+  width : 20px;
+  height :20px;
+  border: 2px solid #333;
+  border-radius: 4px;
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  margin-right: 10px
+}
+.checkbox-group input[type=":checkbox"]:checked +label.custom-checkbox::after{
+  content: '';
+  position:absolute;
+  left: 5px;
+  top:1px;
+  width: 6px;
+  height:10px;
+  border: solid #003366;
+  border-width: 0 2px 2px 0;
+}
 
-    .checkbox-label{
-      cursor: pointer;
-    }
+.checkbox-label{
+  cursor: pointer;
+}
 
-    /*Custom modal style*/ 
+/*Custom modal style*/
 .modal-overlay{
   position : fixed;
   display: none;
@@ -152,29 +142,28 @@
   align-items: center;
 }
 
-    .modal-content{
-      background-color: #fff;
-      margin: auto;
-      padding: 20px;
-      border: 1px solid #888;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
-      text-align:center;
-      position: relative; 
-    }
+.modal-content{
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 500px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+  text-align:center;
+  position: relative;
+}
 
-
-    .modal-content h2{
-      margin-top: 0;
-      color: #003366;
-    }
-    .modal-content p{
-      font-size: 0.95rem;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
+.modal-content h2{
+  margin-top: 0;
+  color: #003366;
+}
+.modal-content p{
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
 .modal-close-btn{
   background-color: #003366;
   color:white;
@@ -182,12 +171,57 @@
   border: none;
   border-radius: 4px;
   cursor : pointer;
-  font-size: 1rem; 
+  font-size: 1rem;
 }
-    .modal-close-btn :hover{
-      background-color: #002244;;
-    }
+.modal-close-btn:hover{
+  background-color: #002244;;
+}
 
+/* Upload Container Styling */
+.upload-Container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around; /* Distribute items evenly */
+  gap: 20px;
+  padding: 20px;
+}
+.upload-Container h2{
+  text-align: center;
+}
+
+.upload-block {
+  display: flex;
+  flex-direction: column; /* Stack icon and input vertically */
+  align-items: center;
+  width: calc(25% - 20px); /* Four columns with gaps */
+  text-align: center;
+}
+
+.upload-block img, .upload-block svg {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
+
+.upload-block input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .upload-block {
+    width: calc(50% - 20px); /* Two columns on smaller screens */
+  }
+}
+
+@media (max-width: 480px) {
+  .upload-block {
+    width: 100%; /* One column on very small screens */
+  }
+}
   </style>
 </head>
 <body>
@@ -228,11 +262,11 @@
       </div>
       <!-- Add more fields as needed -->
 
-      <div class="documents-section">
+   <!-- <div class="documents-section">
         <h2>Your application requires the following documents</h2>
         <div class="doc-list">
           <div class="doc-item">
-            <img src="/icons/id document.png" alt="ID document" />
+            <img src="/icons/id document.png" alt="ID document"/>
             <span>ID document</span>
           </div>
           <div class="field-group">
@@ -257,30 +291,57 @@
             <span>Proof of residence</span>
             <label for="proofOfResidence">Upload Proof residence </label>
             <input type="file" id="proofofResidence" name="proofofResidence" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
-        </div>
-        <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
-      </div>
+          </div> -->
+<div class="upload-Container">
+    <h2>Your application requires the following documents</h2>
+    <br>
+    <br>
+    <div class="upload-block">
+      <img src="/icons/bank statment.svg" alt="Bank statement Icon">
+      <label>3 Months Bank Statement</label>
+      <input type="file" name="bankStatement" accept=".pdf" required>
+    </div>
+    
+    <div class="upload-block">
+      <img src="/icons/id document.svg" alt="ID document Icon">
+      <label>ID document </label>
+      <input type="file" name="ID Document" accept=".pdf, .jpg, .jpeg, .png" required>
+    </div>
 
-      <div class="checkbox-group">
-        <input type="checkbox" id="agreeTerms">
-        <span class="custom-checkbox"></span>
-        <span class="checkbox-label"> I have read and understand the application <a href="/legal documents/Terms and Conditions .pdf"><b>Terms and Conditions</a></a></span>
-        </label>
-        </div>
-      <div class="checkbox-group">
-        <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
-        <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
-        <label for="agreePrivacy">
-          <span class="custom-checkbox"></span>
-          <span class="checkbox-label"> By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in <a href="/legal documents/Privacy Statement.pdf"><b>Privacy statement </b></a></span>
-        </label>
-      </div>
-      <br />
+    <div class="upload-block">
+      <img src="/icons/income.svg" alt="Income Icon">
+      <label>Proof of Income (3 Months Payslip) </label>
+      <input type="file" name="Proof of Income" accept=".pdf, .jpg, .jpeg, .png" required>
+    </div>
+    <div class="upload-block">
+      <img src="/icons/residence.svg" alt="Residence Icon">
+      <label>Proof of Residence</label>
+      <input type="file" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
+    </div>
+     <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
+  </div>
+  <div class="checkbox-group">
+                <input type="checkbox" id="agreeTerms">
+                <span class="custom-checkbox"></span>
+                <span class="checkbox-label"> I have read and understand the application <a href="/legal documents/Terms and Conditions .pdf"><b>Terms and Conditions</a></a></span>
+                </label>
+                </div>
+              <div class="checkbox-group">
+                <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
+                <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
+                <label for="agreePrivacy">
+                  <span class="custom-checkbox"></span>
+                  <span class="checkbox-label"> By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in <a href="/legal documents/Privacy Statement.pdf"><b>Privacy statement</b></a></span>
+                </label>
+              </div>
+   </div>
+       
+          
+              <br />
       <div class="actions">
         <button type="submit" class="btn-submit">Submit application</button>
         <br />
-        <a href="index copy.html" class="back-link">&larr; Back.</a>
+        <a href="/index.html" class="back-link">&larr; Back.</a>
       </div>
     </form>
   </div>

@@ -1,367 +1,218 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Lift Off Lending</title>
+  <title>Loan Calculator — Styled Results</title>
   <style>
-  body {
-    font-family: Arial, sans-serif;
-    padding: 40px;
-    background-color: #f9f9f9;
-    color: #333;
-  }
-  footer{
-    text-align: center;
-    padding: 20px;
-    background-color: #003366;
-    color: white;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-  h2 {
-    text-align: center;
-    color: #003366;
-  }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 40px;
+      background-color: #f9f9f9;
+      color: #333;
+    }
+    h2 {
+      color: #003366;
+    }
 
-  .input-group {
-      margin-bottom: 30px;
+    /* Slider + Term */
+    .input-group {
+      margin-bottom: 20px;
     }
     .input-group label {
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 5px;
       font-weight: bold;
     }
-.ima{
-  width:100% ; 
-  height: auto;
-  margin-bottom: 20px;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;  
-}
-    /* Shared slider styles */
-    input[type="range"] {
-      -webkit-appearance: none;
-      width: 100%;
-      height: 4px;
-      background: #ddd;
-      border-radius: 2px;
-      outline: none;
+    .input-group input[type="range"],
+    .input-group input[type="number"] {
+      width: 300px;
     }
-    /* Chrome/Safari */
-    input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 16px;
-      height: 16px;
-      background: #e50914;
-      border-radius: 50%;
-      cursor: pointer;
-      margin-top: -6px; /* center the thumb over the track */
-    }
-    /* Firefox */
-    input[type="range"]::-moz-range-thumb {
-      width: 16px;
-      height: 16px;
-      background: #e50914;
-      border-radius: 50%;
-      cursor: pointer;
+    .input-group span.value {
+      margin-left: 10px;
+      font-weight: bold;
     }
 
-    /* Ticks below slider */
-    .ticks {
-      display: grid;
-      grid-template-columns: repeat(6, 1fr);
-      margin-top: 8px;
+    button.calc-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #003366;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
     }
-    .ticks span {
+
+    /* Results panel styling */
+    .results {
+      max-width: 400px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-top: 30px;
+      display: none;
+    }
+    .results .estimate-label {
       text-align: center;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .results .estimate-amount {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .results hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 20px 0;
+    }
+    .results .include-label {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
       color: #666;
     }
-  button.calc-btn {
-    margin-top: 10px;
-    padding: 10px 20px;
-    background-color: #003366;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    font-size: 1rem;
-  }
-
-  /* Results panel styling */
-  .results {
-    max-width: 400px;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    padding: 30px;
-    margin-top: 30px;
-    display: none;
-  }
-  .results .estimate-label {
-    text-align: center;
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 10px;
-  }
-  .results .estimate-amount {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-    color: #222;
-  }
-  .results hr {
-    border: none;
-    border-top: 1px solid #eee;
-    margin: 20px 0;
-  }
-  .results .include-label {
-    font-size: 0.9rem;
-    margin-bottom: 10px;
-    color: #666;
-  }
-  .results .breakdown {
-    margin-bottom: 20px;
-  }
-  .results .breakdown .line-item {
-    display: flex;
-    justify-content: space-between;
-    margin: 5px 0;
-    font-size: 0.95rem;
-  }
-  .results .disclaimer {
-    font-size: 0.8rem;
-    color: #999;
-    margin-bottom: 20px;
-    line-height: 1.4;
-  }
-  .results .apply-btn {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: #003366;
-    color: #fff;
-    font-size: 1rem;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-  }
-</style>
+    .results .breakdown {
+      margin-bottom: 20px;
+    }
+    .results .breakdown .line-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+    .results .disclaimer {
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .results .apply-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #003366;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+    }
+  </style>
 </head>
-<nav></nav>
-
-</header>
 <body>
-<img src="/images/Picture 1.jpg">
 
-<div class="calculator-container">
-<h2>Loan Calculator</h2>
-<div class="input-group">
-  <label for="loanAmountInput">Enter Loan Amount (R):</label>
-  <input 
-    type="number" 
-    id="loanAmountDisplay"
-    id="loanAmountInput"
-    min="500" 
-    max="15000" 
-    step="100" 
-    value="1000"
-    output="updatedLoanDisplay()"
-    oninput = "updatedLoandDisplay()"
-  />
-  <p> Enter an amount between R 500 and R 15000</p>
-  <span class="value" id="loanAmountDisplay">R 1 000</span>
-  <span class ="value" id="loanAmountFormattedDisplay">R 1 000</span> <!-- display span id changed-->
-</div>
+  <h2>Use our Loan Repayment Calculator to see how much credit you could get!</h2>
 
-<div class="input-group">
-  <label for="termSlider">Repayment Term (months):</label>
-  <input 
-    type="range" 
-    id="termSlider"
-    min="1" 
-    max="60" 
-    value="6"
-  />
-  <span class="value">months</span>
-  <span class="value" id="termMonthsDisplay"> 6 months</span>
-</div>
+  <div class="input-group">
+    <label for="loanSlider">How much would like to borrow?</label>
+    <p>Choose an amount between R500 – R15 000</p>
+    <input
+      type="number"
+      id="loanSlider"
+      min="500"
+      max="15000"
+      step="100"
+      value="1000"
+    />
+    <span class="value" id="loanAmountDisplay"> R 1 000</span>
+  </div>
 
-<button class="calc-btn" onclick="calculateLoan()">Calculate Repayment</button> <!-- Changed button text -->
-<div id="errorMessage" class="error-message"></div>
+  <div class="input-group">
+    <label for="termMonths">Over how many months do you want to repay this loan? (months):</label>
+    <input
+      type="range"
+      id="termMonths"
+      min="6"
+      max="18"
+      value="12"
+      style="width:100px; margin-left: 10px;"
+    />
+    <span class="value" id="termMonthsDisplay">12</span>
+  </div>
 
-<div class="results" id="results">
-  <div class="estimate-label">Estimated monthly repayment will be</div>
-  <div class="estimate-amount">R <span id="monthlyRepaymentLarge">0.00</span></div>
-  <hr>
-  <div class="include-label">Your monthly repayment includes:</div>
-  <div class="breakdown">
-    <div class="line-item">
-      <span>Initiation fee (once off)</span>
-      <span>R <span id="initiationFeeResult">0.00</span></span>
-    </div>
-    <div class="line-item">
-        <span>Service fee</span> <!-- Changed label to Service fee -->
+  <button class="calc-btn" onclick="calculateLoan()">Show min Repayment</button>
+
+  <div class="results" id="results">
+    <div class="estimate-label">Estimated monthly repayment will be</div>
+    <div class="estimate-amount">R <span id="monthlyRepaymentLarge">0.00</span></div>
+    <hr>
+    <div class="include-label">Your monthly repayment includes:</div>
+    <div class="breakdown">
+        <div class="line-item">
+        <span>Initiation fee (once-off)</span>
+        <span>R <span id="initiationFeeResult">60.00</span></span>
+      </div>
+      <div class="line-item">
+        <span>Service fee</span>
         <span>R <span id="serviceFeeResult">0.00</span></span>
       </div>
-    <div class="line-item">
-      <span>VAT</span> <!-- Changed label to VAT -->
-      <span>R <span id="vatResult">0.00</span></span>
-    </div>
-    <div class="line-item" style="font-weight: bold; margin-top: 10px;"> <!-- Added Total Repayment -->
+      <div class="line-item">
+        <span>VAT</span>
+        <span>R <span id="vatResult">0.00</span></span>
+      </div>
+      <div class="line-item">
         <span>Total Amount Repayable</span>
         <span>R <span id="totalRepaymentResult">0.00</span></span>
       </div>
+    </div>
+    <hr>
+    <div class="disclaimer">
+      The amount we can lend you depends on your credit and affordability assessment
+    </div>
+    <a href="Application form.html"><button class="apply-btn">Apply Now</button></a>
   </div>
-  <hr>
-  <div class="disclaimer">
-    The amount we can lend you depends on your credit and affordability assessment
-  </div>
-  <a href="Application form copy.html"class="apply-btn">Apply Now</a>
-</div>
-</div> 
+
   <script>
-    /*update display when slider moves
-    const slider = document.getElementById('loanAmountDisplay');
-    const display = document.getElementById('loanAmountDisplay');
-    const termInput = document.getElementById('termSlider');
-    const resultsDiv = document.getElementById('results');
-    const errorDiv = document.getElementById('errorMessage');*/
+    // Sync slider display
+    const slider = document.getElementById('loanSlider');
+    const sliderDisplay = document.getElementById('loanAmountDisplay');
+    slider.addEventListener('input', () => {
+      sliderDisplay.textContent = "R" + Number(slider.value).toLocaleString();
+    });
 
-    const slider= documnet .getElementById('loanAmountDisplay');
-    const display = document.getElementById('loanAmountDisplay');
-    const termInput = document.getElementById('termSlider');
+    const termSlider = document.getElementById('termMonths');
+    const termDisplay = document.getElementById('termMonthsDisplay');
+    termSlider.addEventListener('input', () => {
+      termDisplay.textContent = termSlider.value; // Corrected: Display the value
+    });
 
-
-    const loanAmountInput = document.getElementById('loanAmountInput');
-    const loanAmountFormattedDisplay =document.getElementById('loanAmountFormattedDisplay');
-    const termSlider =document.getElementById('termSlider');
-    const termMonthsDisplay =document.getElementById('termMonthsDisplay');
-    const resultsDiv = document .getElementById('results');
-    const errorDiv = document.getElementById('errorMessage');
-
-    // Function to format number with spaces
-    function formatNumber(num) {
-        return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-    }
-     // Initial display update
-     display.textContent = "R " + formatNumber(parseFloat(slider.value));
-
-// Update display when slider moves
-slider.addEventListener('input', () => {
-  // Use parseFloat before formatting
-  display.textContent = "R " + formatNumber(parseFloat(slider.value));
-});
- return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-
-//display updates 
-loanDisplay.textContent ="R" + formatNumber(parseFloat(loadInput.value));
-termDisplay.textContent = termSlider.value + " months"
-
-//loan amount display changes with input
-
-function updatedLoanDisplay(){
-  let value = parseFloat(loanAmountInput.value);
-  const minVal =parseFload(loanAmountInput.min);
-  const maxVal = parseFloat(loanAmountInput.max)
-
-  if ( isNaN(value)){
-    loanAmountFormattedDisplay.textContent = "R" =formatNumber(minVal);
-    return;
-  }
-  loanAmountFormattedDisplay.textContent ="R" +formatNumber(value);
-}
- function updateTermDisplay(){
-  termMonthsDisplay.textContent = termSlider.value +"months";
- }
-
- updatedLoanDisplay();
- updateTermDisplay();
-      
- //event listerns 
- loanAmountInput.addEventListener('input',updatedLoanDisplay);
- termSlider.addEventListener('input', updateTermDisplay);
 
     function calculateLoan() {
-      errorDiv.textContent = '';
-      resultsDiv.style.display = 'none';
+      const loanAmount = parseFloat(document.getElementById('loanSlider').value);
+      const termMonths = parseInt(document.getElementById('termMonths').value, 10);
 
-      const loanAmount= parseFloat(loanAmountInput.value);
-      const termMonths= parseInt(termSlider.value,10);
-      //loan amount validation 
-      if (isNan(loanAmount)|| loanAmount <parseFloat(loanAmountInput.min)|| loanAmount> parseFloat(LoanAmountInput.max)){
-        errroDiv.textContent ='please enter a valid loan amount between R ${loanAmountInput.min} and  R${loanAmountInpout.max}';
-        loanAmountInput.focus();
-        return;
-      }
-      if (isNaN(termMonths) || termMonths < 1) {
-        errorDiv.textContent= 'Please enter a valid repayment term (at least 1 month).';
-        return;
-      }
       const tiers = [
-        // Tier 1: Up to 1400
-        { maxAmount: 1400, interestRate: 0.07, serviceFeeRate: 0.14 },
-        // Tier 2: 1401 to 5000
-        { maxAmount: 5000, interestRate: 0.06, serviceFeeRate: 0.13 },
-        // Tier 3: 5001 to 9000
-        { maxAmount: 9000, interestRate: 0.04, serviceFeeRate: 0.12 },
-        // Tier 4: 9001 to 15000
-        { maxAmount: 15000, interestRate: 0.03, serviceFeeRate: 0.11 }
+        { min: 500, max: 1400, interest: 0.07, serviceFee: 0.14 },
+        { min: 1401, max: 5000, interest: 0.06, serviceFee: 0.13 },
+        { min: 5001, max: 9000, interest: 0.04, serviceFee: 0.12 },
+        { min: 9001, max: 15000, interest: 0.03, serviceFee: 0.11 },
       ];
-
       const initiationFee = 60;
-      const VAT_RATE = 0.15; // 15% VAT
+      const VAT_RATE = 0.15;
 
-      let selectedTier = null;
-      for (const tier of tiers) {
-          // Check if loanAmount falls within the current tier's max limit
-          // Assumes tiers are ordered by maxAmount ascending
-          if (loanAmount <= tier.maxAmount) {
-              selectedTier = tier;
-              break; // Found the correct tier, exit loop
-          }
-      }
+      const tier = tiers.find(t => loanAmount >= t.min && loanAmount <= t.max);
 
-      if (!selectedTier) {
-        // This should ideally not happen if slider max matches last tier max
-        errorDiv.textContent = "Error: Loan amount does not fall into a defined tier.";
-        console.error("Tier finding failed for amount:", loanAmount); // Log for debugging
+      if (!tier) {
+        alert("Loan amount is not a vaild amount.");
         return;
       }
-     
 
-     // --- Calculations (Using the logic from your original code, with corrections) ---
+      const interest = loanAmount * tier.interest * termMonths / 12;
+      const serviceFee = loanAmount * tier.serviceFee;
+      const totalExcludingVat = loanAmount + serviceFee + initiationFee;
+      const vat = totalExcludingVat * VAT_RATE;
+      const totalRepayment = totalExcludingVat + vat;
+      const monthlyRepayment = totalRepayment / termMonths;
 
-      const totalInterest = loanAmount * selectedTier.interestRate * termMonths; // Example: Simple interest over the term
-
-      // NOTE: Assuming service fee is a total fee based on principal
-      const totalServiceFee = loanAmount * selectedTier.serviceFeeRate;
-
-      // Calculate VAT on fees
-      const vatOnFees = (totalServiceFee + initiationFee) * VAT_RATE;
-
-      // Calculate Total Repayment
-      const totalRepayment = loanAmount + totalInterest + totalServiceFee + initiationFee + vatOnFees;
-
-      // Calculate Monthly Repayment
-      const monthlyRepay = totalRepayment / termMonths;
-
-
-      // Render results
-      document.getElementById('monthlyRepaymentLarge').innerText = monthlyRepay.toFixed(2);
-      document.getElementById('serviceFeeResult').innerText = totalServiceFee.toFixed(2);
-      document.getElementById('vatResult').innerText = vatOnFees.toFixed(2); // Display calculated VAT
-      document.getElementById('initiationFeeResult').innerText = initiationFee.toFixed(2); // Update from constant
-      document.getElementById('totalRepaymentResult').innerText = totalRepayment.toFixed(2); // Display total repayment
-
-
-      // Show the results panel
-      resultsDiv.style.display = 'block';
+      document.getElementById('monthlyRepaymentLarge').innerText = monthlyRepayment.toFixed(2);
+      document.getElementById('serviceFeeResult').innerText = serviceFee.toFixed(2);
+      document.getElementById('initiationFeeResult').innerText = initiationFee.toFixed(2);
+      document.getElementById('vatResult').innerText = vat.toFixed(2);
+      document.getElementById('totalRepaymentResult').innerText = totalRepayment.toFixed(2);
+      document.getElementById('results').style.display = 'block';
     }
   </script>
 </body>
-<footer>
-  <a href="/legal documents/Terms and Conditions .pdf">Terms and Conditions</a> <br>  <a href="/legal documents/Privacy Statement.pdf">POPIA</a> <br> <i> Contact us:  or email us:<a href="info@liftofflending.co.za">info@liftofflending.co.za</a></i>
-</footer>
 </html>
