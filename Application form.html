@@ -67,9 +67,10 @@ form input {
   text-align: center;
 }
 .doc-note {
-  font-size: 0.85rem;
+  font-size: 15px;
   color: #666;
   margin-bottom: 30px;
+  text-align: center;
 }
 .actions {
   text-align: center;
@@ -124,6 +125,9 @@ form input {
 
 .checkbox-label{
   cursor: pointer;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: justify;
 }
 
 /*Custom modal style*/
@@ -182,7 +186,7 @@ form input {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around; /* Distribute items evenly */
-  gap: 20px;
+  gap: 10px;
   padding: 20px;
 }
 .upload-Container h2{
@@ -221,6 +225,10 @@ form input {
   .upload-block {
     width: 100%; /* One column on very small screens */
   }
+  .checkbox-label{
+    text-align: justify;
+    
+  }
 }
   </style>
 </head>
@@ -243,7 +251,7 @@ form input {
      <span id="idNumberError" style="color:red; font-size: 0.8em;"></span>
       </div>
       <div class="field-group">
-        <label for="cellphoneNumber">Contact Number</label>
+        <label for="cellphoneNumber">Cell number</label>
         <input type="tell" id="cellphoneNumber" name="cellphoneNumber" required pattern="\d{10}" maxlength="10" title="Please enter a vaild cellphone number."/>
       </div>
       <div class="field-group">
@@ -252,12 +260,12 @@ form input {
       </div>
 
       <div class="field-group">
-        <label for="loanAmount">Loan Amount R:</label>
+        <label for="loanAmount">Loan amount</label>
         <input type="number" id="loanAmount" name="loanAmount" required />
       </div>
 
       <div class="field-group">
-        <label for="termMonths">Period of loan in months</label>
+        <label for="termMonths">Months</label>
         <input type="number" id="termMonths" name="termMonths" required min="1" />
       </div>
       <!-- Add more fields as needed -->
@@ -295,10 +303,9 @@ form input {
 <div class="upload-Container">
     <h2>Your application requires the following documents</h2>
     <br>
-    <br>
-    <div class="upload-block">
+    <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add-->
       <img src="/icons/bank statment.svg" alt="Bank statement Icon">
-      <label>3 Months Bank Statement</label>
+      <label>3 months bank statement</label>
       <input type="file" name="bankStatement" accept=".pdf" required>
     </div>
     
@@ -310,20 +317,20 @@ form input {
 
     <div class="upload-block">
       <img src="/icons/income.svg" alt="Income Icon">
-      <label>Proof of Income (3 Months Payslip) </label>
+      <label>3 months payslip </label>
       <input type="file" name="Proof of Income" accept=".pdf, .jpg, .jpeg, .png" required>
     </div>
     <div class="upload-block">
       <img src="/icons/residence.svg" alt="Residence Icon">
-      <label>Proof of Residence</label>
+      <label>Proof of residence</label>
       <input type="file" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
     </div>
      <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
   </div>
   <div class="checkbox-group">
                 <input type="checkbox" id="agreeTerms">
-                <span class="custom-checkbox"></span>
-                <span class="checkbox-label"> I have read and understand the application <a href="/legal documents/Terms and Conditions .pdf"><b>Terms and Conditions</a></a></span>
+                <span class="custom-checkbox"></span> <!-- make blocks smaller and align with text-->
+                <span class="checkbox-label">I have read and understand the application <a href="/legal documents/Terms and Conditions .pdf">terms and conditions</a></span>
                 </label>
                 </div>
               <div class="checkbox-group">
@@ -331,7 +338,7 @@ form input {
                 <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
                 <label for="agreePrivacy">
                   <span class="custom-checkbox"></span>
-                  <span class="checkbox-label"> By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in <a href="/legal documents/Privacy Statement.pdf"><b>Privacy statement</b></a></span>
+                  <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">privacy statement</a></span>
                 </label>
               </div>
    </div>
@@ -376,7 +383,7 @@ form input {
       //validation of the form and broswers 
       if(applicationForm.checkValidity()){
         // disable button on mulitple submissions 
-        submitButton.disabled =true;
+        submitButton.disabled = true;
         //-- simulate submission processing
         // if(submissionMessageElement) submissionMessageElement.textContent = 'Submitting your application';
         // if(submissionMessageElement) submissionMessageElment.className = 'message info';
