@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Application Form</title>
   <style>
-    body {
+body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
   margin: 0;
@@ -117,10 +117,18 @@ form input {
   position:absolute;
   left: 5px;
   top:1px;
+  position: absolute;
+  top:  2px;
+  left: 6px;;
   width: 6px;
   height:10px;
   border: solid #003366;
   border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -ms-transform:rotate(45deg);
+  -webkit-transform: rotate(45deg); /* For older WebKit browsers */
+  -ms-transform:rotate(45deg); /* For older IE browsers */
 }
 
 .checkbox-label{
@@ -129,7 +137,11 @@ form input {
   font-size: 12px;
   text-align: justify;
 }
-
+.checkbox-group > label{
+  display:flex;
+  align-items: center; /*align text to checkbox */
+  cursor: pointer;
+}
 /*Custom modal style*/
 .modal-overlay{
   position : fixed;
@@ -163,11 +175,20 @@ form input {
   margin-top: 0;
   color: #003366;
 }
+.modal-content img{
+  width: 40px;
+  height: 40px;
+  margin-bottom: 10px;
+}
 .modal-content p{
   font-size: 0.95rem;
   line-height: 1.6;
   margin-bottom: 20px;
 }
+.modal-content li{
+  text-align: left;
+}
+
 .modal-close-btn{
   background-color: #003366;
   color:white;
@@ -201,10 +222,11 @@ form input {
   text-align: center;
 }
 
-.upload-block img, .upload-block svg {
+.upload-block img{
   width: 40px;
   height: 40px;
   margin-bottom: 10px;
+  filter: grayscale(100%) sepia(100%) hue-rotate(80deg) saturate(300%) brightness(0.9);
 }
 
 .upload-block input[type="file"] {
@@ -252,99 +274,92 @@ form input {
       </div>
       <div class="field-group">
         <label for="cellphoneNumber">Cell number</label>
-        <input type="tell" id="cellphoneNumber" name="cellphoneNumber" required pattern="\d{10}" maxlength="10" title="Please enter a vaild cellphone number."/>
+        <input type="tel" id="cellphoneNumber" name="cellphoneNumber" required pattern="\d{10}" maxlength="10" title="Please enter a vaild cellphone number."/>
       </div>
       <div class="field-group">
         <label for="emailAddress">Email address</label>
         <input type="email" id="emailAddress" name="emailAddress" required />
       </div>
-
       <div class="field-group">
         <label for="loanAmount">Loan amount</label>
         <input type="number" id="loanAmount" name="loanAmount" required />
       </div>
-
       <div class="field-group">
         <label for="termMonths">Months</label>
         <input type="number" id="termMonths" name="termMonths" required min="1" />
       </div>
       <!-- Add more fields as needed -->
 
-   <!-- <div class="documents-section">
-        <h2>Your application requires the following documents</h2>
-        <div class="doc-list">
-          <div class="doc-item">
-            <img src="/icons/id document.png" alt="ID document"/>
-            <span>ID document</span>
-          </div>
-          <div class="field-group">
-            <label for="idUpload">Upload ID Document:</label>
-            <input type="file" id="idUpload" name="idUpload" accept=".pdf,.jpg,.jpeg,.png">
-        </div>
-          <div class="doc-item">
-            <img src="/icons/income .png" alt="Latest proof of income" />
-            <span>Latest proof of income</span>
-          </div><div class="field-group">
-            <label for="proofOfIncomeUpload">Upload Proof of income</label>
-            <input type="file" id="proofOfIncomeUpload" name="proofofincome" accept=".pdf,.jpg,.jpeg,.png">
-        </div>
-          <div class="doc-item">
-            <img src="/icons/bank statment.png" alt="3 months bank statements" />
-            <span>3 months bank statements</span>
-            <label for="bankstatementsUpload">Upload 3 months bank statements</label>
-            <input type="file" id="bankstatements " name="bankstatements" accept=".pdf,.jpg,.jpeg,.png">
-          </div>
-          <div class="doc-item">
-            <img src="/icons/residence.png" alt="Proof of residence" />
-            <span>Proof of residence</span>
-            <label for="proofOfResidence">Upload Proof residence </label>
-            <input type="file" id="proofofResidence" name="proofofResidence" accept=".pdf,.jpg,.jpeg,.png">
-          </div> -->
+   
 <div class="upload-Container">
     <h2>Your application requires the following documents</h2>
     <br>
     <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add-->
-      <img src="/icons/bank statment.svg" alt="Bank statement Icon">
+      <img src="/icons/bank-statement.png" alt="Bank statement Icon">
       <label>3 months bank statement</label>
       <input type="file" name="bankStatement" accept=".pdf" required>
     </div>
     
     <div class="upload-block">
-      <img src="/icons/id document.svg" alt="ID document Icon">
+      <img src="/icons/id.png" alt="ID document Icon">
       <label>ID document </label>
       <input type="file" name="ID Document" accept=".pdf, .jpg, .jpeg, .png" required>
     </div>
-
     <div class="upload-block">
-      <img src="/icons/income.svg" alt="Income Icon">
+      <img src="/icons/income.png" alt="Income Icon">
       <label>3 months payslip </label>
       <input type="file" name="Proof of Income" accept=".pdf, .jpg, .jpeg, .png" required>
     </div>
     <div class="upload-block">
-      <img src="/icons/residence.svg" alt="Residence Icon">
+      <img src="/icons/house.png" alt="Residence Icon">
       <label>Proof of residence</label>
       <input type="file" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
     </div>
-     <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
+     <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
   </div>
   <div class="checkbox-group">
+                <label for ="agreeTerms">
                 <input type="checkbox" id="agreeTerms">
+                <label for="agreeTerms">
                 <span class="custom-checkbox"></span> <!-- make blocks smaller and align with text-->
-                <span class="checkbox-label">I have read and understand the application <a href="/legal documents/Terms and Conditions .pdf">terms and conditions</a></span>
+                <span class="checkbox-label">I have read and understand the application <a href="#" id="termsLink">Terms and conditions</span>
                 </label>
                 </div>
-              <div class="checkbox-group">
-                <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
-                <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
-                <label for="agreePrivacy">
-                  <span class="custom-checkbox"></span>
-                  <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">privacy statement</a></span>
-                </label>
-              </div>
-   </div>
-       
-          
-              <br />
+  <div class="checkbox-group">
+           <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
+           <span class="custom-checkbox"></span>
+            <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">privacy statement</a></span>
+            </label>
+  </div>
+
+<div id="termsModal" class= "modal-overlay">
+    <div class ="modal-content">
+      <h2>By applying for a loan you confirm that: </h2>
+      <br>
+      <ul>
+        <li>You are not currently over-indebted;</li>
+        <li> A court has not declared you mentally unfit;</li>
+        <li>You have not applied for or are currently under administraion,
+          provisional or final sequestration or debt review;</li>
+        <li>If married in community of property, or by customary or  tribal law your spouse has given
+          you written consent to enter into this agreement;</li>
+        <li>All information you give us is true and correct;</li>  
+        <li>You will read and ensure you understand the pre-agreemnt statment that follows before accepting any loan amount
+          that you may be offered
+        </li>
+        <li>You will read and ensure that you understand the Loan Terms and Conditions before you accepcy any specific terms in your quotation</li>
+        <li>All applications are subject to Lift Off Lending's credit Policy
+          and an affordability assessment,as well as the submission of your SA ID and 3 most recent proof of income</li>
+       <li>We will email all your documentation and statements to you 
+        via the email adress you provided in this application form</li>
+       <li>You will read and ensure you understand our full <b><a href ="legal documents/Terms and Conditions .pdf">Terms and Conditions</a></b> 
+        before you transact online with us </li>
+      </ul>
+      <button id="termsModalCloseButton" class="modal-close-btn">Close</button>
+    </div>
+</div>
+
+</div>
       <div class="actions">
         <button type="submit" class="btn-submit">Submit application</button>
         <br />
@@ -356,6 +371,7 @@ form input {
 
   <div id="customAlertModal" class="modal-overlay">
     <div class="modal-content">
+      <img src="/icons/check-mark.png" alt="Check Mark Icon">
       <h2> Your application has been submitted !</h2>
       <p> Our team will verify and review your application. We will be in touch within the next 24 hours</p>
       <p style="font-size: 0.8em; color : #555">
@@ -371,44 +387,86 @@ form input {
     </div>
   </div>
 
-
   <script>
     const applicationForm = document.querySelector('form');
     const submitButton= applicationForm.querySelector('.btn-submit');
     const submissionMessageElement = document.getElementById('submissionMessage');
+    const agreeTermsCheckbox = document .getElementById('agreeTerms');
+    const agreePrivacyCheckbox = document.getElementById('agreePrivacy');
+    const modal=document.getElementById('customAlertModal');
+    const modalCloseButton = document.getElementById('modalCloseButton');
 
+    const termsLink= document.getElementById('termsLink');
+    const termsModal = document.getElementById('termsModal');
+    const termsModalCloseButton = document.getElementById('termsModalCloseButton');
+    
     applicationForm.addEventListener('submit', function(event){
       event.preventDefault();// prevent default form submissiion (page reload) 
-
       //validation of the form and broswers 
       if(applicationForm.checkValidity()){
         // disable button on mulitple submissions 
-        submitButton.disabled = true;
-        //-- simulate submission processing
-        // if(submissionMessageElement) submissionMessageElement.textContent = 'Submitting your application';
-        // if(submissionMessageElement) submissionMessageElment.className = 'message info';
-        // if(submissionMessageElement) submissionMessageElement.style.display ='block';
-        //alert('Your application has been submitted');
+        event.preventDefault();
+         if (applicationForm.checkValidity()) {
+          submitButton.disabled = true; // disable submit button to prevent multiple submissions
+        successModal.style .display ='flex';
+        }
+        if(!agreeTermsCheckbox.checked || !agreePrivacyCheckbox.checked){
+          alert('Please tick the boxes to agree to the terms and conditions and the privacy statement bfore submitting');
+        return; // stop further processing
+        }
+        
+        
         const modal=document.getElementById('customAlertModal');
         modal.style.display= 'flex';
-
-        //reset form 
-        //applicationForm.reset();
+      //reset form 
+      // applicationForm.reset();
       }
       else{
         alert ('Please fill out all required fields.');
       }
+      modal.style.display = 'flex'; // Show the modal
     });
 
     //close custom modal 
-    const modal =document.getElementById('customAlertModal');
-    const modalCloseButton = document.getElementById('modalCloseButton');
-
     modalCloseButton.onclick=function(){
       modal.style.display="none";
       submitButton.disabled =false; // re-enable submit button when modal is closed 
+      applicationForm.reset();
     }
+termsLink.addEventListener('click', function(event) {
+  if (termsLink && termsModal){
+    termsLink.addEventListener('click',function(event) {
+          event.preventDefault(); // Prevent default link behavior
+          termsModal.style.display = 'flex'; // Show the terms modal
+        });
+  }
+          event.preventDefault(); // Prevent default link behavior
+          termsModal.style.display = 'flex'; // Show the terms modal
+        });
+
+        termsModalCloseButton.addEventListener('click', function() {
+          termsModal.style.display = 'none'; // Hide the terms modal
+        });
+const fileInputsForColorChange = document.querySelectorAll('.upload-block input[type="file"]');
+fileInputsForColorChange.forEach(input =>{
+
+  input.addEventListener('change', function(event) {
+    //find parent .upload-block
+    const uploadBlock = event.target.closest('.upload-block');
+    if(uploadBlock){
+      //find element withing upload-block
+      const imgElement =uploadBlock.querySelector('img');
+      if(imgElement){
+           if(event.target.files && event.target.files.length > 0){
+          imgElement.style.filter = 'none'; // Remove the grayscale filter
+          }
+          else{
+            imgElement.style.filter = ''; // Reapply the original filter (or set to default)
+          }
+        }
+      }
+    });
+  })
   </script>
 </body>
 </html>
-

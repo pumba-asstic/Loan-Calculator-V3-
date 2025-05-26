@@ -5,7 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lift Off lending</title>
   <style>
-    body {
+ .navigationBar{ list-style-type:none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+background-color: #003366;;
+position: fixed;
+top: 0;
+font-family:'Arial, sans-serif';}
+
+.navigationBar ul{list-style: none;
+margin: 0 ;
+padding: 0;
+overflow: hidden;
+position: fixed;
+top: 0;
+width: 100%;}
+
+.navigationBar li{
+    float: right;}
+
+.navigationBar li a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+  }
+.navigationBar li a:hover:not(.active){
+    background-color:gold;
+    cursor: pointer;}
+
+.active{
+    background-color: #003366;
+    margin:auto;}
+
+body {
       font-family: Arial, sans-serif;
       padding: 40px;
       background-color: #f9f9f9;
@@ -13,6 +48,7 @@
     }
     h2 {
       color: #003366;
+      text-align: center;
     }
 
     /* Slider + Term */
@@ -89,6 +125,7 @@
       color: #999;
       margin-bottom: 20px;
       line-height: 1.4;
+      text-align: center;
     }
     .results .apply-btn {
       display: block;
@@ -105,12 +142,22 @@
 </head>
 
 <body>
+  <header>
+    <nav class="navigationBar">
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="Application form.html">Apply now</a></li>
+                <li><a href="Contact.html">Contact Us </a></li>
+            </ul>
+        </nav>
+  </header>
+    <img src="/images/Picture 1.jpg" alt=" lit off lending Homepage image">
 
-  <h2>Use our Loan Repayment Calculator to see how much credit you could get!</h2>
+  <h2>Use our loan repayment calculator to see how much credit you could get!</h2>
 
   <div class="input-group">
     <label for="loanSlider">How much would like to borrow?</label>
-    <p>Choose an amount between R500 – R15 000</p>
+    <p>Choose an amount between R500 - R15 000</p>
     <input
       type="number"
       id="loanSlider"
@@ -119,27 +166,27 @@
       step="100"
       value="1000"
     />
-    <span class="value" id="loanAmountDisplay"> R 1 000</span>
+    <span class="value" id="loanAmountDisplay"> R 1000</span>
   </div>
 
   <div class="input-group">
-    <label for="termMonths">Over how many months do you want to repay this loan? (months):</label>
+    <label for="termMonths">Over how many months do you want to repay this loan? (months):</label> <!-- make dots slection dots-->
     <input
       type="range"
       id="termMonths"
-      min="6"
-      max="18"
-      value="12"
+      min="1"
+      max="6"
+      value="6"
       style="width:100px; margin-left: 10px;"
     />
-    <span class="value" id="termMonthsDisplay">12</span>
+    <span class="value" id="termMonthsDisplay">6</span>
   </div>
 
-  <button class="calc-btn" onclick="calculateLoan()">Show min Repayment</button>
+  <button class="calc-btn" onclick="calculateLoan()">Show repayment</button>
 
   <div class="results" id="results">
     <div class="estimate-label">Estimated monthly repayment will be</div>
-    <div class="estimate-amount">R <span id="monthlyRepaymentLarge">0.00</span></div>
+    <div class="estimate-amount">R <span id="monthlyRepaymentLarge">0.00 p/m</span></div>
     <hr>
     <div class="include-label">Your monthly repayment includes:</div>
     <div class="breakdown">
@@ -156,7 +203,7 @@
         <span>R <span id="vatResult">0.00</span></span>
       </div>
       <div class="line-item">
-        <span>Total Amount Repayable</span>
+        <span>Total amount repayable</span>
         <span>R <span id="totalRepaymentResult">0.00</span></span>
       </div>
     </div>
