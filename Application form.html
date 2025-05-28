@@ -286,7 +286,7 @@ form input {
       </div>
       <div class="field-group">
         <label for="termMonths">Months</label>
-        <input type="number" id="termMonths" name="termMonths" required min="1" />
+        <input type="number" id="termMonths" name="termMonths" required max="6" />
       </div>
       <!-- Add more fields as needed -->
 
@@ -393,7 +393,7 @@ form input {
     const submissionMessageElement = document.getElementById('submissionMessage');
     const agreeTermsCheckbox = document .getElementById('agreeTerms');
     const agreePrivacyCheckbox = document.getElementById('agreePrivacy');
-    const modal=document.getElementById('customAlertModal');
+    const modal= document.getElementById('customAlertModal');
     const modalCloseButton = document.getElementById('modalCloseButton');
 
     const termsLink= document.getElementById('termsLink');
@@ -411,7 +411,7 @@ form input {
         successModal.style .display ='flex';
         }
         if(!agreeTermsCheckbox.checked || !agreePrivacyCheckbox.checked){
-          alert('Please tick the boxes to agree to the terms and conditions and the privacy statement bfore submitting');
+          alert('Please tick the boxes to agree to the terms and conditions and the privacy statement before submitting');
         return; // stop further processing
         }
         
@@ -419,7 +419,7 @@ form input {
         const modal=document.getElementById('customAlertModal');
         modal.style.display= 'flex';
       //reset form 
-      // applicationForm.reset();
+       //applicationForm.reset();
       }
       else{
         alert ('Please fill out all required fields.');
@@ -431,7 +431,7 @@ form input {
     modalCloseButton.onclick=function(){
       modal.style.display="none";
       submitButton.disabled =false; // re-enable submit button when modal is closed 
-      applicationForm.reset();
+      //applicationForm.reset();
     }
 termsLink.addEventListener('click', function(event) {
   if (termsLink && termsModal){
