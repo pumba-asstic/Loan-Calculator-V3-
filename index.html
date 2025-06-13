@@ -5,25 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lift Off lending</title>
   <style>
- .navigationBar{ list-style-type:none;
+.navigationBar{ 
+list-style-type:none;
 margin: 0;
 padding: 0;
 overflow: hidden;
-background-color: #003366;;
 position: fixed;
-top: 0;
-font-family:'Arial, sans-serif';}
+font-family: Arial, sans-serif;
+z-index: 1000;
+width: 100%;
+}
 
-.navigationBar ul{list-style: none;
+.navigationBar ul{
+list-style: none;
 margin: 0 ;
-padding: 0;
+margin-right: 2px;
+padding: 12px;
+top:0;
 overflow: hidden;
 position: fixed;
-top: 0;
 width: 100%;}
 
 .navigationBar li{
-    float: right;}
+    float: left ;
+  }
 
 .navigationBar li a{
     display: block;
@@ -33,18 +38,64 @@ width: 100%;}
     text-decoration: underline;
   }
 .navigationBar li a:hover:not(.active){
-    background-color:gold;
-    cursor: pointer;}
+    background-color:goldenrod;
+    cursor: pointer;
+  }
 
-.active{
-    background-color: #003366;
-    margin:auto;}
 
+.footer{
+    left: 0;
+    bottom:0;
+    overflow: hidden;
+    height: 40%;
+    width: 100%;
+    background-color:#003366;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+
+  /*.footer p{
+    color: white;
+    text-align: center;
+    padding: 10px;
+  }*/
+  
+
+.footer li a{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+  }
+  .footer li{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    
+  }
+  .footer p{
+    color: white;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+  }
+  .footer img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+
+  }
 body {
       font-family: Arial, sans-serif;
-      padding: 40px;
+      padding: 20px;
+      padding-top: 70px;
       background-color: #f9f9f9;
       color: #333;
+      font-weight: bold;
     }
     h2 {
       color: #003366;
@@ -61,8 +112,12 @@ body {
       font-weight: bold;
     }
     .input-group input[type="range"],
-    .input-group input[type="number"] {
+    .input-group input[type="number"] 
+    {
       width: 300px;
+    }
+    .input-group span.value{
+      margin-left: 10px;
     }
     .input-group span.value {
       margin-left: 10px;
@@ -72,7 +127,7 @@ body {
     button.calc-btn {
       margin-top: 10px;
       padding: 10px 20px;
-      background-color: #003366;
+      background-color: goldenrod;
       color: #fff;
       border: none;
       cursor: pointer;
@@ -138,6 +193,30 @@ body {
       border: none;
       cursor: pointer;
     }
+   .hero-section{
+    display :flex;
+    align-items: stretch;
+    margin-bottom: 20px;
+    
+   }
+   .bodyimage{
+    flex: 0 0 50%;
+    max-width: 50%;
+    height: auto;
+    padding-right: 0px;
+   }
+   .landingContent{
+    flex:1; 
+    background-color: #003366;
+    color: white;
+    text-align: right;
+    padding-right: 20px;
+   }
+   .LandingText{
+    font-size: 15px;
+    text-align: center;
+   }
+
   </style>
 </head>
 
@@ -145,20 +224,27 @@ body {
   <header>
     <nav class="navigationBar">
             <ul>
-                <li><a href="#">home</a></li>
-                <li><a href="Application form.html">Apply now</a></li>
-                <li><a href="Contact.html">Contact Us </a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="Application-form.html">Apply now</a></li>
             </ul>
         </nav>
   </header>
-    <img src="/images/Picture 1.jpg" alt=" lit off lending Homepage image">
 
+    <div class="hero-section">
+    <img class="bodyimage" src="images/Picture 1.jpg" alt="lift off lending Homepage image">
+    <div class ="landingContent">
+    <h1>Do you need cash fast? Lift Off Lending is here to help you with a quick and easy loan application process.</h1>
+    <br>
+    <p class="LandingText"> Our loans range from R 500 up tp R 15 000</p>
+    </div>
+</div>
   <h2>Use our loan repayment calculator to see how much credit you could get!</h2>
 
   <div class="input-group">
-    <label for="loanSlider">How much would like to borrow?</label>
-    <p>Choose an amount between R500 - R15 000</p>
+    <label for="loanSlider">How much would you like to borrow?</label>
+    <p>Choose an amount between R500 - R15,000</p>
     <input
+    aria-labelledby="loanAmountDisplay"
       type="number"
       id="loanSlider"
       min="500"
@@ -166,12 +252,13 @@ body {
       step="100"
       value="1000"
     />
-    <span class="value" id="loanAmountDisplay"> R 1000</span>
+    <span class="value" id="loanAmountDisplay" aria-live="polite">R 1,000</span>
   </div>
 
   <div class="input-group">
-    <label for="termMonths">Over how many months do you want to repay this loan? (months):</label> <!-- make dots slection dots-->
+    <label for="termMonths">Over how many months do you want to repay this loan?</label> <!-- make dots slection dots-->
     <input
+      aria-labelledby="termMonthsDisplay"
       type="range"
       id="termMonths"
       min="1"
@@ -179,14 +266,15 @@ body {
       value="6"
       style="width:100px; margin-left: 10px;"
     />
-    <span class="value" id="termMonthsDisplay">6</span>
+    <span class="value" id="termMonthsDisplay" aria-live="polite">6</span>
   </div>
 
-  <button class="calc-btn" onclick="calculateLoan()">Show repayment</button>
+  <button type="button" class="calc-btn" id="calculateBtn">Show repayment</button>
 
   <div class="results" id="results">
     <div class="estimate-label">Estimated monthly repayment will be</div>
-    <div class="estimate-amount">R <span id="monthlyRepaymentLarge">0.00 p/m</span></div>
+    <div class="estimate-amount">R <span id="monthlyRepaymentValue">0.00</span><p>
+    </div>
     <hr>
     <div class="include-label">Your monthly repayment includes:</div>
     <div class="breakdown">
@@ -211,13 +299,17 @@ body {
     <div class="disclaimer">
       The amount we can lend you depends on your credit and affordability assessment
     </div>
-    <a href="Application form.html"><button class="apply-btn">Apply Now</button></a>
+    <button class="apply-btn" onclick="window.loaction.href='Application-form.html';">Apply Now</button>
   </div>
+</main>
 
   <script>
     // Sync slider display
     const slider = document.getElementById('loanSlider');
     const sliderDisplay = document.getElementById('loanAmountDisplay');
+    const calculateButton=document.getElementById('calculateBtn');
+
+
     slider.addEventListener('input', () => {
       sliderDisplay.textContent = "R" + Number(slider.value).toLocaleString();
     });
@@ -229,6 +321,7 @@ body {
     });
 
 
+    calculateButton.addEventListener('click', calculateLoan);
     function calculateLoan() {
       const loanAmount = parseFloat(document.getElementById('loanSlider').value);
       const termMonths = parseInt(document.getElementById('termMonths').value, 10);
@@ -245,24 +338,36 @@ body {
       const tier = tiers.find(t => loanAmount >= t.min && loanAmount <= t.max);
 
       if (!tier) {
-        alert("Loan amount is not a vaild amount.");
+        alert("Loan amount is not a valid amount.");
         return;
       }
 
-      const interest = loanAmount * tier.interest * termMonths / 12;
+      const interest = loanAmount * tier.interest * termMonths / 12; // Interest is calculated based on the term in months
       const serviceFee = loanAmount * tier.serviceFee;
       const totalExcludingVat = loanAmount + serviceFee + initiationFee;
-      const vat = totalExcludingVat * VAT_RATE;
-      const totalRepayment = totalExcludingVat + vat;
+      const vatOnFees= (serviceFee +initiationFee) * VAT_RATE;
+      const totalRepayment = loanAmount +interest+serviceFee + initiationFee +vatOnFees;
       const monthlyRepayment = totalRepayment / termMonths;
 
-      document.getElementById('monthlyRepaymentLarge').innerText = monthlyRepayment.toFixed(2);
+      document.getElementById('monthlyRepaymentValue').innerText = monthlyRepayment.toFixed(2);
       document.getElementById('serviceFeeResult').innerText = serviceFee.toFixed(2);
       document.getElementById('initiationFeeResult').innerText = initiationFee.toFixed(2);
-      document.getElementById('vatResult').innerText = vat.toFixed(2);
+      document.getElementById('vatResult').innerText = vatOnFees.toFixed(2);
       document.getElementById('totalRepaymentResult').innerText = totalRepayment.toFixed(2);
       document.getElementById('results').style.display = 'block';
     }
   </script>
 </body>
+<br>
+<br>
+<footer class="footer">
+  <p>Lift Off Lending (Pty) Ltd is a registered credit provider NCRCP 1234</p>
+  <p>Copyright © 202 Lift Off Lending. All rights reserved.</p>
+<ul>
+  <li> <img src="icons/telephone.png"><tel>060 519 4972</tel></li>
+  <li> <a href="mailto:admin@liftofflending.co.za"><img src="icons/email.png">admin@liftofflending.co.za</a></li>
+  <li> <a href="/legal documents/Privacy Statement.pdf">Privacy Statement</a></li>
+  <li> <a href="/legal documents/Terms and Conditions.pdf">Terms and Conditions</a></li>
+</ul></p>
+</footer>
 </html>

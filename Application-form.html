@@ -92,7 +92,7 @@ form input {
   text-decoration: none;
 }
 .checkbox-group{
-  display: flex;
+  display:flex;
   align-items : center;
   font-family: Arial, Helvetica, sans-serif;
   margin:10px 0;
@@ -107,26 +107,21 @@ form input {
   height :20px;
   border: 2px solid #333;
   border-radius: 4px;
-  display: inline-block;
+  display: none;
   position: relative;
   cursor: pointer;
   margin-right: 10px
 }
-.checkbox-group input[type=":checkbox"]:checked +label.custom-checkbox::after{
+.checkbox-group input[type="checkbox"]:checked +label.custom-checkbox::after{
   content: '';
   position:absolute;
-  left: 5px;
-  top:1px;
-  position: absolute;
-  top:  2px;
-  left: 6px;;
+  left: 6px;
+  top: 2px;
   width: 6px;
   height:10px;
   border: solid #003366;
-  border-width: 0 2px 2px 0;
+  border-width: 0 3px px 0;
   transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
-  -ms-transform:rotate(45deg);
   -webkit-transform: rotate(45deg); /* For older WebKit browsers */
   -ms-transform:rotate(45deg); /* For older IE browsers */
 }
@@ -138,10 +133,16 @@ form input {
   text-align: justify;
 }
 .checkbox-group > label{
-  display:flex;
+  display: flex;
   align-items: center; /*align text to checkbox */
   cursor: pointer;
 }
+.checkbox-group label .custom-checkbox{
+  display : inline-block;
+  position: relative;
+
+}
+
 /*Custom modal style*/
 .modal-overlay{
   position : fixed;
@@ -228,12 +229,20 @@ form input {
   margin-bottom: 10px;
   filter: grayscale(100%) sepia(100%) hue-rotate(80deg) saturate(300%) brightness(0.9);
 }
-
+.upload-block.file-selected-parent .upload-block img{
+  filter: grayscale(0) sepia(0) hue-rotate(0deg) saturate(100%) brightness(1);
+}
 .upload-block input[type="file"] {
   width: 100%;
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+.file-name-display{
+  font-size : 0.8em;
+  color: #555;
+  margin-top : 4px; 
+  display: block; /* Ensure it takes up full width */
 }
 
 /* Responsive adjustments */
@@ -252,6 +261,16 @@ form input {
     
   }
 }
+
+form input[type="text"]:valid,
+form input[type="email"]:valid,
+form input[type="tel"]:valid,
+form input[type="number"]:valid{
+  background-color:#f0fff0; 
+  border-left: 5px sold #7fbf7f;
+}
+
+
   </style>
 </head>
 <body>
@@ -297,43 +316,52 @@ form input {
     <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add-->
       <img src="/icons/bank-statement.png" alt="Bank statement Icon">
       <label>3 months bank statement</label>
-      <input type="file" name="bankStatement" accept=".pdf" required>
+      <input type="file" id="bankStatement" name="bankstatment" accept=".pdf" required>
+      <span class="file-name-display"></span>
     </div>
     
     <div class="upload-block">
       <img src="/icons/id.png" alt="ID document Icon">
       <label>ID document </label>
-      <input type="file" name="ID Document" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file"  id="idFile" name="ID Document" accept=".pdf, .jpg, .jpeg, .png" required>
+      <span class="file-name-display"></span>
     </div>
+
     <div class="upload-block">
       <img src="/icons/income.png" alt="Income Icon">
       <label>3 months payslip </label>
-      <input type="file" name="Proof of Income" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file" id="PayslipFile" name="Proof of Income" accept=".pdf, .jpg, .jpeg, .png" required>
+      <span class="file-name-display"></span>
     </div>
+
     <div class="upload-block">
       <img src="/icons/house.png" alt="Residence Icon">
       <label>Proof of residence</label>
-      <input type="file" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file" id="residenceFile" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
+      <span class="file-name-display"></span>
     </div>
+
      <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
   </div>
-  <div class="checkbox-group">
+
+          <div class="checkbox-group">
+                <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
                 <label for ="agreeTerms">
-                <input type="checkbox" id="agreeTerms">
-                <label for="agreeTerms">
                 <span class="custom-checkbox"></span> <!-- make blocks smaller and align with text-->
-                <span class="checkbox-label">I have read and understand the application <a href="#" id="termsLink">Terms and conditions</span>
+                <span class="checkbox-label">I have read and understand the application <a href="#" id="termsLink">Terms and conditions</a></span>
                 </label>
                 </div>
+                
   <div class="checkbox-group">
-           <input type="checkbox" id="agreePrivacy" name="agreePrivacy">
+         <input type="checkbox" id="agreePrivacy" name="agreePrivacy" required>
+          <label for ="agreePrivacy">
            <span class="custom-checkbox"></span>
-            <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">privacy statement</a></span>
+            <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">privacy statement</a></span>     
             </label>
-  </div>
+          </div>
 
 <div id="termsModal" class= "modal-overlay">
-    <div class ="modal-content">
+    <div class="modal-content">
       <h2>By applying for a loan you confirm that: </h2>
       <br>
       <ul>
@@ -363,7 +391,7 @@ form input {
       <div class="actions">
         <button type="submit" class="btn-submit">Submit application</button>
         <br />
-        <a href="/index.html" class="back-link">&larr; Back.</a>
+        <a href="index.html" class="back-link">&larr; Back.</a>
       </div>
     </form>
   </div>
@@ -390,13 +418,13 @@ form input {
   <script>
     const applicationForm = document.querySelector('form');
     const submitButton= applicationForm.querySelector('.btn-submit');
-    const submissionMessageElement = document.getElementById('submissionMessage');
-    const agreeTermsCheckbox = document .getElementById('agreeTerms');
+    //const submissionMessageElement = document.getElementById('submissionMessage');
+    const agreeTermsCheckbox = document.getElementById('agreeTerms');
     const agreePrivacyCheckbox = document.getElementById('agreePrivacy');
-    const modal= document.getElementById('customAlertModal');
+    const customAlertModal = document.getElementById('customAlertModal');
     const modalCloseButton = document.getElementById('modalCloseButton');
 
-    const termsLink= document.getElementById('termsLink');
+    const termsLink = document.getElementById('termsLink');
     const termsModal = document.getElementById('termsModal');
     const termsModalCloseButton = document.getElementById('termsModalCloseButton');
     
@@ -411,62 +439,87 @@ form input {
         successModal.style .display ='flex';
         }
         if(!agreeTermsCheckbox.checked || !agreePrivacyCheckbox.checked){
-          alert('Please tick the boxes to agree to the terms and conditions and the privacy statement before submitting');
-        return; // stop further processing
+          event.preventDefault(); // prevent form submission if checkboxes are not checked
+         // alert('Please tick the boxes to agree to the terms and conditions and the privacy statement before submitting');
+        //return; // stop further processing
         }
         
         
-        const modal=document.getElementById('customAlertModal');
-        modal.style.display= 'flex';
+      const modal=document.getElementById('customAlertModal');
+      modal.style.display= 'flex';
       //reset form 
        //applicationForm.reset();
       }
       else{
         alert ('Please fill out all required fields.');
       }
+
       modal.style.display = 'flex'; // Show the modal
+      applicationForm.addEventListener('submit', function(event){
+        even.preventDefault();
+      })
+
+      //custom checkbox 
+      if(!agreeTermsCheckbox.checked || !agreePrivacyCheckbox.checked){
+        alert('Please agree to the terms and conditions and privacy statement before submitting.');
+        return; // stop further processing
+      }
+
+      // native form validation for other fields
+      if(applicationForm.checkValidity()){
+        // disable submit button to prevent multiple submissions
+        submitButton.disabled = true;
+        customAlertModal.style.display = 'flex'; // Show the custom alert modal
+      } else {
+        //trigger browser built in validation UI for invalid fields 
+        applicationForm.reportValidity(); // browser error 
+        // If the form is not valid, show an error message
+        //alert('Please fill out all required fields correctly.');
+      }
     });
 
     //close custom modal 
     modalCloseButton.onclick=function(){
       modal.style.display="none";
-      submitButton.disabled =false; // re-enable submit button when modal is closed 
-      //applicationForm.reset();
+      customAlertModal.style.display ="none"; // re-enable submit button when modal is closed 
+      submitButton.disabled = false; // enable submit button. 
+      applicationForm.reset(); // reset form after successful submission
     }
+
+    // terms and Conditions modal
 termsLink.addEventListener('click', function(event) {
   if (termsLink && termsModal){
-    termsLink.addEventListener('click',function(event) {
+    termsLink.addEventListener('click',function() {
           event.preventDefault(); // Prevent default link behavior
-          termsModal.style.display = 'flex'; // Show the terms modal
-        });
-  }
-          event.preventDefault(); // Prevent default link behavior
-          termsModal.style.display = 'flex'; // Show the terms modal
+          termsModal.style.display = 'none'; // Show the terms modal
         });
 
+  }else {
+    if (!termsModalCloseButton) console.error('Terms modal close button not found');
+  }
         termsModalCloseButton.addEventListener('click', function() {
           termsModal.style.display = 'none'; // Hide the terms modal
         });
-const fileInputsForColorChange = document.querySelectorAll('.upload-block input[type="file"]');
-fileInputsForColorChange.forEach(input =>{
+      });
 
-  input.addEventListener('change', function(event) {
-    //find parent .upload-block
-    const uploadBlock = event.target.closest('.upload-block');
-    if(uploadBlock){
-      //find element withing upload-block
-      const imgElement =uploadBlock.querySelector('img');
-      if(imgElement){
-           if(event.target.files && event.target.files.length > 0){
-          imgElement.style.filter = 'none'; // Remove the grayscale filter
-          }
-          else{
-            imgElement.style.filter = ''; // Reapply the original filter (or set to default)
-          }
-        }
+fileInputs.forEach(input =>{
+  input.addEventListener('change', function(){
+    const uploadBlock =this.closest('.upload-block');
+    const fileNameDisplay =uploadBlock ? uploadBlock.querySelector('file-name-display') :null;
+
+    if (this.file.length >0){
+      if(fileNameDisplay){
+        this.classList.add('file-selected');
+        if (uploadBlock) uploadBlock.classList.add('file-selected-parent');
+      }else{
+        if(fileNameDisplay) fileNameDisplay.textContent ='';
+        this.classList.remove('file-selected');
+        if(uploadBlock) uploadBlock.classList.remove('file-selected-parent');
       }
-    });
+    }
   })
-  </script>
+})
+
+</script>
 </body>
 </html>
