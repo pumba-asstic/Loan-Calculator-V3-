@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
   <title>Application Form</title>
   <style>
 body {
@@ -23,6 +25,7 @@ h1 {
 }
 form .field-group {
   margin-bottom: 15px;
+  padding: 10px 20px;
 }
 form label {
   display: block;
@@ -76,8 +79,8 @@ form input {
   text-align: center;
 }
 .btn-submit {
-  background-color: #003366;
-  color: #fff;
+  background-color: goldenrod;
+  color: black;
   border: none;
   padding: 12px 24px;
   font-size: 1rem;
@@ -88,7 +91,7 @@ form input {
   display: inline-block;
   margin-top: 20px;
   font-size: 0.9rem;
-  color: #003366;
+  color: black;
   text-decoration: none;
 }
 .checkbox-group{
@@ -107,20 +110,20 @@ form input {
   height :20px;
   border: 2px solid #333;
   border-radius: 4px;
-  display: none;
+  display: inline-block;
   position: relative;
   cursor: pointer;
   margin-right: 10px
 }
-.checkbox-group input[type="checkbox"]:checked +label.custom-checkbox::after{
+.checkbox-group input[type="checkbox"]:checked + label .custom-checkbox::after{
   content: '';
   position:absolute;
   left: 6px;
   top: 2px;
   width: 6px;
   height:10px;
-  border: solid #003366;
-  border-width: 0 3px px 0;
+  border: solid goldenrod;
+  border-width: 0 3px 3px 0;
   transform: rotate(45deg);
   -webkit-transform: rotate(45deg); /* For older WebKit browsers */
   -ms-transform:rotate(45deg); /* For older IE browsers */
@@ -137,10 +140,12 @@ form input {
   align-items: center; /*align text to checkbox */
   cursor: pointer;
 }
-.checkbox-group label .custom-checkbox{
-  display : inline-block;
-  position: relative;
-
+.custom-checkbox{
+  width: 20px;
+  height: 20px;
+  border : 2px soldid #333;
+  border-radius: 4px;
+  position: fixed;
 }
 
 /*Custom modal style*/
@@ -174,7 +179,7 @@ form input {
 
 .modal-content h2{
   margin-top: 0;
-  color: #003366;
+  color: black;
 }
 .modal-content img{
   width: 40px;
@@ -191,8 +196,8 @@ form input {
 }
 
 .modal-close-btn{
-  background-color: #003366;
-  color:white;
+  background-color: goldenrod;
+  color: black ;
   padding : 10px 20px;
   border: none;
   border-radius: 4px;
@@ -200,13 +205,13 @@ form input {
   font-size: 1rem;
 }
 .modal-close-btn:hover{
-  background-color: #002244;;
+  background-color: darkgoldenrod;
 }
 
 /* Upload Container Styling */
 .upload-Container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap ;
   justify-content: space-around; /* Distribute items evenly */
   gap: 10px;
   padding: 20px;
@@ -229,7 +234,7 @@ form input {
   margin-bottom: 10px;
   filter: grayscale(100%) sepia(100%) hue-rotate(80deg) saturate(300%) brightness(0.9);
 }
-.upload-block.file-selected-parent .upload-block img{
+.upload-block.file-selected-parent .img{
   filter: grayscale(0) sepia(0) hue-rotate(0deg) saturate(100%) brightness(1);
 }
 .upload-block input[type="file"] {
@@ -246,7 +251,7 @@ form input {
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 932px) {
   .upload-block {
     width: calc(50% - 20px); /* Two columns on smaller screens */
   }
@@ -265,11 +270,11 @@ form input {
 form input[type="text"]:valid,
 form input[type="email"]:valid,
 form input[type="tel"]:valid,
-form input[type="number"]:valid{
+form input[type="number"]:valid,
+form input[type="file"]:valid {
   background-color:#f0fff0; 
-  border-left: 5px sold #7fbf7f;
+  border-left: 5px sold #4caf50;
 }
-
 
   </style>
 </head>
@@ -309,10 +314,9 @@ form input[type="number"]:valid{
       </div>
       <!-- Add more fields as needed -->
 
-   
-<div class="upload-Container">
-    <h2>Your application requires the following documents</h2>
+   <h2>Your application requires the following documents</h2>
     <br>
+<div class="upload-Container">
     <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add-->
       <img src="/icons/bank-statement.png" alt="Bank statement Icon">
       <label>3 months bank statement</label>
@@ -330,7 +334,7 @@ form input[type="number"]:valid{
     <div class="upload-block">
       <img src="/icons/income.png" alt="Income Icon">
       <label>3 months payslip </label>
-      <input type="file" id="PayslipFile" name="Proof of Income" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file" id="PayslipFile" name="Proof of Income" accept=".pdf" required>
       <span class="file-name-display"></span>
     </div>
 
@@ -340,9 +344,8 @@ form input[type="number"]:valid{
       <input type="file" id="residenceFile" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
       <span class="file-name-display"></span>
     </div>
-
-     <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
   </div>
+   <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
 
           <div class="checkbox-group">
                 <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
@@ -380,7 +383,7 @@ form input[type="number"]:valid{
           and an affordability assessment,as well as the submission of your SA ID and 3 most recent proof of income</li>
        <li>We will email all your documentation and statements to you 
         via the email adress you provided in this application form</li>
-       <li>You will read and ensure you understand our full <b><a href ="legal documents/Terms and Conditions .pdf">Terms and Conditions</a></b> 
+       <li>You will read and ensure you understand our full <b><a href ="/legal documents/Terms and Conditions .pdf">Terms and Conditions</a></b> 
         before you transact online with us </li>
       </ul>
       <button id="termsModalCloseButton" class="modal-close-btn">Close</button>
@@ -415,110 +418,90 @@ form input[type="number"]:valid{
     </div>
   </div>
 
+
+
+
   <script>
+   document.addEventListener('DOMContentLoaded', function() {
+    // Get all the elements we need to work with
     const applicationForm = document.querySelector('form');
-    const submitButton= applicationForm.querySelector('.btn-submit');
-    //const submissionMessageElement = document.getElementById('submissionMessage');
-    const agreeTermsCheckbox = document.getElementById('agreeTerms');
-    const agreePrivacyCheckbox = document.getElementById('agreePrivacy');
+    const submitButton = applicationForm.querySelector('.btn-submit');
+    
+    // Success Modal elements
     const customAlertModal = document.getElementById('customAlertModal');
     const modalCloseButton = document.getElementById('modalCloseButton');
 
+    // Terms & Conditions Modal elements
     const termsLink = document.getElementById('termsLink');
     const termsModal = document.getElementById('termsModal');
     const termsModalCloseButton = document.getElementById('termsModalCloseButton');
-    
-    applicationForm.addEventListener('submit', function(event){
-      event.preventDefault();// prevent default form submissiion (page reload) 
-      //validation of the form and broswers 
-      if(applicationForm.checkValidity()){
-        // disable button on mulitple submissions 
-        event.preventDefault();
-         if (applicationForm.checkValidity()) {
-          submitButton.disabled = true; // disable submit button to prevent multiple submissions
-        successModal.style .display ='flex';
+
+    // File Upload elements (defined here to be accessible in all handlers)
+    const fileInputs = document.querySelectorAll('.upload-block input[type="file"]');
+
+    // --- Event Listeners ---
+
+    // Handle form submission
+    applicationForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Always prevent default submission to handle it with JS
+
+        // Check if all fields are valid according to HTML5 validation rules (including required checkboxes)
+        if (applicationForm.checkValidity()) {
+            // Form is valid, show the success modal
+            submitButton.disabled = true; // Prevent multiple clicks
+            customAlertModal.style.display = 'flex';
+        } else {
+            // Form is not valid, trigger the browser's built-in validation UI
+            applicationForm.reportValidity();
         }
-        if(!agreeTermsCheckbox.checked || !agreePrivacyCheckbox.checked){
-          event.preventDefault(); // prevent form submission if checkboxes are not checked
-         // alert('Please tick the boxes to agree to the terms and conditions and the privacy statement before submitting');
-        //return; // stop further processing
-        }
-        
-        
-      const modal=document.getElementById('customAlertModal');
-      modal.style.display= 'flex';
-      //reset form 
-       //applicationForm.reset();
-      }
-      else{
-        alert ('Please fill out all required fields.');
-      }
-
-      modal.style.display = 'flex'; // Show the modal
-      applicationForm.addEventListener('submit', function(event){
-        even.preventDefault();
-      })
-
-      //custom checkbox 
-      if(!agreeTermsCheckbox.checked || !agreePrivacyCheckbox.checked){
-        alert('Please agree to the terms and conditions and privacy statement before submitting.');
-        return; // stop further processing
-      }
-
-      // native form validation for other fields
-      if(applicationForm.checkValidity()){
-        // disable submit button to prevent multiple submissions
-        submitButton.disabled = true;
-        customAlertModal.style.display = 'flex'; // Show the custom alert modal
-      } else {
-        //trigger browser built in validation UI for invalid fields 
-        applicationForm.reportValidity(); // browser error 
-        // If the form is not valid, show an error message
-        //alert('Please fill out all required fields correctly.');
-      }
     });
 
-    //close custom modal 
-    modalCloseButton.onclick=function(){
-      modal.style.display="none";
-      customAlertModal.style.display ="none"; // re-enable submit button when modal is closed 
-      submitButton.disabled = false; // enable submit button. 
-      applicationForm.reset(); // reset form after successful submission
-    }
-
-    // terms and Conditions modal
-termsLink.addEventListener('click', function(event) {
-  if (termsLink && termsModal){
-    termsLink.addEventListener('click',function() {
-          event.preventDefault(); // Prevent default link behavior
-          termsModal.style.display = 'none'; // Show the terms modal
+    // Close the success modal
+    modalCloseButton.addEventListener('click', function() { // Corrected syntax here
+        customAlertModal.style.display = "none";
+        submitButton.disabled = false; // Re-enable submit button
+        applicationForm.reset(); // Reset form fields
+        // Also reset file upload UI
+        fileInputs.forEach(input => {
+            const uploadBlock = input.closest('.upload-block');
+            if (uploadBlock) { // Ensure uploadBlock exists
+              const fileNameDisplay = uploadBlock.querySelector('.file-name-display');
+              fileNameDisplay.textContent = '';
+              uploadBlock.classList.remove('file-selected-parent');
+            }
         });
+    });
 
-  }else {
-    if (!termsModalCloseButton) console.error('Terms modal close button not found');
-  }
-        termsModalCloseButton.addEventListener('click', function() {
-          termsModal.style.display = 'none'; // Hide the terms modal
+    // Show Terms and Conditions modal
+    termsLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the link from navigating
+        if (termsModal) { // Check if termsModal exists
+            termsModal.style.display = 'flex'; // Corrected: show the modal
+        }
+    });
+
+    // Hide Terms and Conditions modal
+    termsModalCloseButton.addEventListener('click', function() {
+        if (termsModal) { // Check if termsModal exists
+            termsModal.style.display = 'none';
+        }
+    });
+
+    // Handle file input UI changes
+    fileInputs.forEach(input => {
+        input.addEventListener('change', function() { // Corrected 'chnage' to 'change'
+            const uploadBlock = this.closest('.upload-block');
+            const fileNameDisplay = uploadBlock.querySelector('.file-name-display');
+            if (this.files.length > 0) { // Corrected 'this.file.length' to 'this.files.length'
+                fileNameDisplay.textContent = this.files[0].name;
+                uploadBlock.classList.add('file-selected-parent');
+            } else {
+                fileNameDisplay.textContent = '';
+                uploadBlock.classList.remove('file-selected-parent');
+            }
         });
-      });
-
-fileInputs.forEach(input =>{
-  input.addEventListener('change', function(){
-    const uploadBlock =this.closest('.upload-block');
-    const fileNameDisplay =uploadBlock ? uploadBlock.querySelector('file-name-display') :null;
-
-    if (this.file.length >0){
-      if(fileNameDisplay){
-        this.classList.add('file-selected');
-        if (uploadBlock) uploadBlock.classList.add('file-selected-parent');
-      }else{
-        if(fileNameDisplay) fileNameDisplay.textContent ='';
-        this.classList.remove('file-selected');
-        if(uploadBlock) uploadBlock.classList.remove('file-selected-parent');
-      }
-    }
-  })
-})
+    });
+});
 
 </script>
 </body>

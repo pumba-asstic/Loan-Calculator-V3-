@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculate Loan</title>
+</head>
+<style>
+ .navigationBar{ 
+list-style-type:none;
+margin: 0;
+padding: 0;
+overflow: hidden;
+position: fixed;
+font-family: Arial, sans-serif;
+z-index: 1000;
+width: 100%;
+}
+
+.navigationBar ul{
+list-style: none;
+margin: 0 ;
+margin-right: 2px;
+padding: 12px;
+top:0;
+overflow: hidden;
+position: fixed;
+width: 100%;
+}
+
+.navigationBar li{
+    float: left ;
+  }
+
+.navigationBar li a{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: underline;
+  }
+.navigationBar li a:hover:not(.active){
+    background-color:goldenrod;
+    cursor: pointer;
+  }
+
+.footer{
+    left: 0;
+    overflow: hidden;
+    height: 40%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+.footer li a{
+    display: block;
+    color: black;
+    text-align: center;
+  }
+  .footer li{
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 4px 6px;
+    
+  }
+  .footer p{
+    color: white;
+    text-align: center;
+    padding: 3px;
+    font-size: 7px;
+    font-weight: lighter;
+  }
+  .footer img{
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+
+  }
+  
+body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      padding-top: 70px;
+      background-color: #f5f5f5ec;
+      background-image: url('images/LiftOff Poster (1).png');
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-attachment: inherit;
+      color: #333;
+      font-weight: bold;
+    }
+    h2 {
+      color: black;
+      text-align: center;
+    }
+
+    /* Slider + Term */
+    .input-group {
+      margin-bottom: 15px;
+      padding-left: 45px;
+      padding-bottom: 15px;
+      padding-right: 40px;
+    
+    }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      align-items: center;
+    }
+    .input-group input[type="range"],
+    .input-group input[type="number"] 
+    {
+      width: 50px;
+    }
+    .input-group span.value{
+      margin-left: 10px;
+    }
+    .input-group span.value {
+      margin-left: 10px;
+      font-weight: lighter;
+    }
+
+    button.calc-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: goldenrod;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      align-items: center;
+    }
+   
+    /* Results panel styling */
+    .results {
+      max-width: 400px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      padding: 30px;
+      margin-top: 30px;
+      display: none;
+    }
+    .results .estimate-label {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #666;
+      margin-bottom: 10px;
+    }
+    .results .estimate-amount {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      color: #222;
+    }
+    .results hr {
+      border: none;
+      border-top: 1px solid #eee;
+      margin: 20px 0;
+    }
+    .results .include-label {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      color: #666;
+    }
+    .results .breakdown {
+      margin-bottom: 20px;
+    }
+    .results .breakdown .line-item {
+      display: flex;
+      justify-content: space-between;
+      margin: 5px 0;
+      font-size: 0.95rem;
+    }
+    .results .disclaimer {
+      font-size: 0.8rem;
+      color: #999;
+      margin-bottom: 20px;
+      line-height: 1.4;
+      text-align: center;
+    }
+    .results .apply-btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: goldenrod;
+      color: black;
+      font-size: 1rem;
+      text-align: center;
+      border: none;
+      cursor: pointer;
+    }
+
+      /* responsive design */
+  @media (max-width: 932px)
+  {
+    body{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    .navigationBar ul{
+      padding: 0;
+      
+    }
+    .navigationBar li a{
+      text-align: center;
+      padding: 10px;;
+    }
+
+    .landingContent h1{
+      font-size: 38px;
+    }
+    .landingContent ul, .landingContent-steps ul{
+      font-size: 18px;;
+    }
+    .footer ul{
+      flex-direction: column;
+    }
+    .footer li{
+      margin-bottom :15px;
+    }
+  }
+</style>
+<body>
+    <header>
+    <nav class="navigationBar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Calculate Now</a></li>
+                 <li><a href="Application-form.html">Apply now</a></li>
+            </ul>
+        </nav>
+  </header>
+    <h2>Use our loan repayment calculator to see how much credit you could get!</h2>
+  <div class="input-group">
+    <label for="loanSlider">How much would you like to borrow?</label>
+    <p>Choose an amount between R500 - R15,000</p>
+    <input
+    aria-labelledby="loanAmountDisplay"
+      type="number"
+      id="loanSlider"
+      min="500"
+      max="15000"
+      step="100"
+      value="1000"
+    />
+    <span class="value" id="loanAmountDisplay" aria-live="polite">R 1,000</span>
+  </div>
+
+  <div class="input-group">
+    <label for="termMonths">Over how many months do you want to repay this loan?</label> <!-- make dots slection dots-->
+    <input
+      aria-labelledby="termMonthsDisplay"
+      type="range"
+      id="termMonths"
+      min="1"
+      max="6"
+      value="6"
+      style="width:100px; margin-left: 10px;"
+    />
+    <span class="value" id="termMonthsDisplay" aria-live="polite">6</span>
+  </div>
+
+  <button type="button" class="calc-btn" id="calculateBtn">Show repayment</button>
+
+  <div class="results" id="results">
+    <div class="estimate-label">Estimated monthly repayment will be</div>
+    <div class="estimate-amount">R <span id="monthlyRepaymentValue">0.00</span><p>
+    </div>
+    <hr>
+    <div class="include-label">Your monthly repayment includes:</div>
+    <div class="breakdown">
+        <div class="line-item">
+        <span>Initiation fee (once-off)</span>
+        <span>R <span id="initiationFeeResult">60.00</span></span>
+      </div>
+      <div class="line-item">
+        <span>Service fee</span>
+        <span>R <span id="serviceFeeResult">0.00</span></span>
+      </div>
+      <div class="line-item">
+        <span>VAT</span>
+        <span>R <span id="vatResult">0.00</span></span>
+      </div>
+      <div class="line-item">
+        <span>Total amount repayable</span>
+        <span>R <span id="totalRepaymentResult">0.00</span></span>
+      </div>
+    </div>
+    <hr>
+    <div class="disclaimer">
+      The amount we can lend you depends on your credit and affordability assessment
+    </div>
+    <button class="apply-btn" onclick="window.location.href='Application-form.html';">Apply Now</button>
+  </div>
+</main>
+
+  <script>
+    // Sync slider display
+    const slider = document.getElementById('loanSlider');
+    const sliderDisplay = document.getElementById('loanAmountDisplay');
+    const calculateButton=document.getElementById('calculateBtn');
+
+
+    slider.addEventListener('input', () => {
+      sliderDisplay.textContent = "R" + Number(slider.value).toLocaleString();
+    });
+
+    const termSlider = document.getElementById('termMonths');
+    const termDisplay = document.getElementById('termMonthsDisplay');
+    termSlider.addEventListener('input', () => {
+      termDisplay.textContent = termSlider.value; // Corrected: Display the value
+    });
+
+
+    calculateButton.addEventListener('click', calculateLoan);
+    function calculateLoan() {
+      const loanAmount = parseFloat(document.getElementById('loanSlider').value);
+      const termMonths = parseInt(document.getElementById('termMonths').value, 10);
+
+      const tiers = [
+        { min: 500, max: 1400, interest: 0.07, serviceFee: 0.14 },
+        { min: 1401, max: 5000, interest: 0.06, serviceFee: 0.13 },
+        { min: 5001, max: 9000, interest: 0.04, serviceFee: 0.12 },
+        { min: 9001, max: 15000, interest: 0.03, serviceFee: 0.11 },
+      ];
+      const initiationFee = 60;
+      const VAT_RATE = 0.15;
+
+      const tier = tiers.find(t => loanAmount >= t.min && loanAmount <= t.max);
+
+      if (!tier) {
+        alert("Loan amount is not a valid amount.");
+        return;
+      }
+
+      const interest = loanAmount * tier.interest * termMonths / 12; // Interest is calculated based on the term in months
+      const serviceFee = loanAmount * tier.serviceFee;
+      const totalExcludingVat = loanAmount + serviceFee + initiationFee;
+      const vatOnFees= (serviceFee +initiationFee) * VAT_RATE;
+      const totalRepayment = loanAmount +interest+serviceFee + initiationFee +vatOnFees;
+      const monthlyRepayment = totalRepayment / termMonths;
+
+      document.getElementById('monthlyRepaymentValue').innerText = monthlyRepayment.toFixed(2);
+      document.getElementById('serviceFeeResult').innerText = serviceFee.toFixed(2);
+      document.getElementById('initiationFeeResult').innerText = initiationFee.toFixed(2);
+      document.getElementById('vatResult').innerText = vatOnFees.toFixed(2);
+      document.getElementById('totalRepaymentResult').innerText = totalRepayment.toFixed(2);
+      document.getElementById('results').style.display = 'block';
+    }
+  </script>
+</body>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<main>
+<footer class="footer">
+<ul>
+  <li>Number:<br><img src="icons/telephone.png"><tel>060 519 4972</tel></li>
+  <li> Email:<br><a href="mailto:admin@liftofflending.co.za"><img src="icons/email.png">admin@liftofflending.co.za</a></li>
+  <li> <a href="/legal documents/Privacy Statement.pdf">Privacy Statement</a></li>
+  <li> <a href="/legal documents/Terms and Conditions.pdf">Terms and Conditions</a></li>
+</ul>
+ <p>Lift Off Lending (Pty) Ltd is a registered credit provider NCRCP 1234</p>
+ <p>Copyright © 202 Lift Off Lending. All rights reserved.</p>
+</footer>
+</main>
+</body>
+</html>
