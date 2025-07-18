@@ -11,8 +11,16 @@ body {
   font-family: Arial, sans-serif;
   background-color: #f9f9f9;
   margin: 0;
-  padding: 20px;
+  padding: 40px 20px;
   color: #333;
+}
+.container{
+  max-width: 650px;
+  margin: 0 auto;
+  background-color: #f9f9f9;
+  padding:  20px 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 h1, h2 {
   text-align: center;
@@ -25,7 +33,7 @@ h1 {
 }
 form .field-group {
   margin-bottom: 15px;
-  padding: 10px 20px;
+  padding: 0;
 }
 form label {
   display: block;
@@ -111,7 +119,7 @@ form input {
   border: 2px solid #333;
   border-radius: 4px;
   display: inline-block;
-  position: relative;
+  position: fixed;
   cursor: pointer;
   margin-right: 10px
 }
@@ -143,9 +151,9 @@ form input {
 .custom-checkbox{
   width: 20px;
   height: 20px;
-  border : 2px soldid #333;
+  border : 2px solid #333;
   border-radius: 4px;
-  position: fixed;
+  position: relative;
 }
 
 /*Custom modal style*/
@@ -351,7 +359,7 @@ form input[type="file"]:valid {
                 <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
                 <label for ="agreeTerms">
                 <span class="custom-checkbox"></span> <!-- make blocks smaller and align with text-->
-                <span class="checkbox-label">I have read and understand the application <a href="#" id="termsLink">Terms and conditions</a></span>
+                <span class="checkbox-label">I have read and understand the application <a href="#" id="termsLink">Terms and Conditions</a></span>
                 </label>
                 </div>
                 
@@ -359,7 +367,7 @@ form input[type="file"]:valid {
          <input type="checkbox" id="agreePrivacy" name="agreePrivacy" required>
           <label for ="agreePrivacy">
            <span class="custom-checkbox"></span>
-            <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">privacy statement</a></span>     
+            <span class="checkbox-label">By continuing with this application, I accept my personal information will be processed during the application process and in furture as set out in the <a href="/legal documents/Privacy Statement.pdf">Privacy Statement</a></span>     
             </label>
           </div>
 
@@ -390,7 +398,6 @@ form input[type="file"]:valid {
     </div>
 </div>
 
-</div>
       <div class="actions">
         <button type="submit" class="btn-submit">Submit application</button>
         <br />
