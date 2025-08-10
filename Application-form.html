@@ -289,7 +289,7 @@ form input[type="file"]:valid {
 <body>
   <div class="container">
     <h1>Tell us who you are</h1>
-    <form>
+    <form action="https://formspree.io/f/movlynyp" method="POST" enctype="multipart/form-data">
       <div class="field-group">
         <label for="firstName">First name</label>
         <input type="text" id="firstName" name="firstName" required />
@@ -328,21 +328,21 @@ form input[type="file"]:valid {
     <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add-->
       <img src="icons/bank-statement.png" alt="Bank statement Icon">
       <label>3 months bank statement</label>
-      <input type="file" id="bankStatement" name="bankstatment" accept=".pdf" required>
+      <input type="file" id="bankStatement" name="bankStatement" accept=".pdf" required>
       <span class="file-name-display"></span>
     </div>
     
     <div class="upload-block">
       <img src="icons/id.png" alt="ID document Icon">
       <label>ID document </label>
-      <input type="file"  id="idFile" name="ID Document" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file"  id="idFile" name="idDocument" accept=".pdf, .jpg, .jpeg, .png" required>
       <span class="file-name-display"></span>
     </div>
 
     <div class="upload-block">
       <img src="icons/income.png" alt="Income Icon">
       <label>3 months payslip </label>
-      <input type="file" id="PayslipFile" name="Proof of Income" accept=".pdf" required>
+      <input type="file" id="PayslipFile" name="proofOfIncome" accept=".pdf" required>
       <span class="file-name-display"></span>
     </div>
 
