@@ -114,14 +114,15 @@ form input {
 }
 
 .custom-checkbox{
-  width : 20px;
-  height :20px;
+  width: 20px;
+  height: 20px;
   border: 2px solid #333;
   border-radius: 4px;
   display: inline-block;
-  position: fixed;
+  position: relative; /* Crucial for positioning the checkmark inside */
   cursor: pointer;
-  margin-right: 10px
+  margin-right: 10px;
+  flex-shrink: 0; /* Prevents the box from shrinking on long lines */
 }
 .checkbox-group input[type="checkbox"]:checked + label .custom-checkbox::after{
   content: '';
@@ -147,13 +148,6 @@ form input {
   display: flex;
   align-items: center; /*align text to checkbox */
   cursor: pointer;
-}
-.custom-checkbox{
-  width: 20px;
-  height: 20px;
-  border : 2px solid #333;
-  border-radius: 4px;
-  position: relative;
 }
 
 /*Custom modal style*/
@@ -242,7 +236,7 @@ form input {
   margin-bottom: 10px;
   filter: grayscale(100%) sepia(100%) hue-rotate(80deg) saturate(300%) brightness(0.9);
 }
-.upload-block.file-selected-parent .img{
+.upload-block.file-selected-parent img{
   filter: grayscale(0) sepia(0) hue-rotate(0deg) saturate(100%) brightness(1);
 }
 .upload-block input[type="file"] {
@@ -281,7 +275,7 @@ form input[type="tel"]:valid,
 form input[type="number"]:valid,
 form input[type="file"]:valid {
   background-color:#f0fff0; 
-  border-left: 5px sold #4caf50;
+  border-left: 5px solid #4caf50;
 }
 
   </style>
@@ -289,7 +283,15 @@ form input[type="file"]:valid {
 <body>
   <div class="container">
     <h1>Tell us who you are</h1>
-    <form action="https://formspree.io/f/movlynyp" method="POST" enctype="multipart/form-data">
+    <!-- 
+      IMPORTANT: Replace your-email@example.com with your actual email address.
+      The first time you submit the form, you will get an email to activate it.
+    -->
+    <form action="https://api.web3forms.com/submit" 
+    method="POST" 
+    enctype="multipart/form-data">
+      <!-- IMPORTANT: Replace with your actual Access Key from web3forms.com -->
+      <input type="hidden" name="access_key" value="19ba7ce5-a3b7-48f6-bae2-6db8f4ffd731">
       <div class="field-group">
         <label for="firstName">First name</label>
         <input type="text" id="firstName" name="firstName" required />
@@ -320,40 +322,40 @@ form input[type="file"]:valid {
         <label for="termMonths">Months</label>
         <input type="number" id="termMonths" name="termMonths" required max="6" />
       </div>
-      <!-- Add more fields as needed -->
+      <!-- Add more fields as needed 
 
    <h2>Your application requires the following documents</h2>
     <br>
-<div class="upload-Container">
-    <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add-->
+<!-- <div class="upload-Container">
+    <div class="upload-block"> <!-- repsonsive design of file successfully uploaded add
       <img src="icons/bank-statement.png" alt="Bank statement Icon">
       <label>3 months bank statement</label>
-      <input type="file" id="bankStatement" name="bankStatement" accept=".pdf" required>
+      <input type="file" id="bankStatement" name="bankStatement" accept=".pdf" required disabled>
       <span class="file-name-display"></span>
     </div>
     
     <div class="upload-block">
       <img src="icons/id.png" alt="ID document Icon">
       <label>ID document </label>
-      <input type="file"  id="idFile" name="idDocument" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file"  id="idFile" name="idDocument" accept=".pdf, .jpg, .jpeg, .png" required disabled>
       <span class="file-name-display"></span>
     </div>
 
     <div class="upload-block">
       <img src="icons/income.png" alt="Income Icon">
       <label>3 months payslip </label>
-      <input type="file" id="PayslipFile" name="proofOfIncome" accept=".pdf" required>
+      <input type="file" id="PayslipFile" name="proofOfIncome" accept=".pdf" required disabled>
       <span class="file-name-display"></span>
     </div>
 
     <div class="upload-block">
       <img src="icons/house.png" alt="Residence Icon">
       <label>Proof of residence</label>
-      <input type="file" id="residenceFile" name="Proof of Residence" accept=".pdf, .jpg, .jpeg, .png" required>
+      <input type="file" id="residenceFile" name="proofOfResidence" accept=".pdf, .jpg, .jpeg, .png" required disabled>
       <span class="file-name-display"></span>
     </div>
   </div>
-   <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>
+   <p class="doc-note">Don't have your documents with you right now? Not to worry, you can email them to <a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></p>-->
 
           <div class="checkbox-group">
                 <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
@@ -443,28 +445,68 @@ form input[type="file"]:valid {
     const termsModal = document.getElementById('termsModal');
     const termsModalCloseButton = document.getElementById('termsModalCloseButton');
 
+    // Real-time validation elements
+    const idInput = document.getElementById('idNumber');
+    const idError = document.getElementById('idNumberError');
+
     // File Upload elements (defined here to be accessible in all handlers)
     const fileInputs = document.querySelectorAll('.upload-block input[type="file"]');
 
     // --- Event Listeners ---
 
-    // Handle form submission
+    // Handle form submission with AJAX to Formspree
     applicationForm.addEventListener('submit', function(event) {
-        event.preventDefault(); // Always prevent default submission to handle it with JS
+        event.preventDefault(); // Stop the default browser submission
 
-        // Check if all fields are valid according to HTML5 validation rules (including required checkboxes)
-        if (applicationForm.checkValidity()) {
-            // Form is valid, show the success modal
-            submitButton.disabled = true; // Prevent multiple clicks
-            customAlertModal.style.display = 'flex';
-        } else {
-            // Form is not valid, trigger the browser's built-in validation UI
+        // First, check if the form is valid
+        if (!applicationForm.checkValidity()) {
             applicationForm.reportValidity();
+            return;
         }
+
+        const formData = new FormData(applicationForm);
+        const originalButtonText = submitButton.textContent;
+
+        // Disable button and show a loading state for better UX
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+
+        fetch(applicationForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        }).then(response => {
+            if (response.ok) {
+                // Success! Show the custom modal.
+                customAlertModal.style.display = 'flex';
+                submitButton.textContent = originalButtonText; // Reset button text
+                // The modal close button will handle re-enabling the button and resetting the form
+            } else {
+                // If the submission fails, log the specific error from the server for debugging
+                response.json().then(data => {
+                    console.error("Form Submission Error:", data);
+                    alert(`Oops! There was a problem: ${data.message || 'Please check the console for details and try again.'}`);
+                }).catch(() => {
+                    // If the error response isn't JSON, show the status text
+                    console.error("Form Submission Error:", response.status, response.statusText);
+                    alert(`Oops! There was a problem. Server responded with an error: ${response.statusText}`);
+                });
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        }).catch(error => {
+            // This catches issues like no internet connection or DNS problems.
+            console.error("Network Error:", error);
+            alert('Oops! There was a network error. Please check your internet connection and try again.');
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+        });
     });
 
     // Close the success modal
-    modalCloseButton.addEventListener('click', function() { // Corrected syntax here
+    modalCloseButton.addEventListener('click', function() {
         customAlertModal.style.display = "none";
         submitButton.disabled = false; // Re-enable submit button
         applicationForm.reset(); // Reset form fields
@@ -507,6 +549,15 @@ form input[type="file"]:valid {
                 uploadBlock.classList.remove('file-selected-parent');
             }
         });
+    });
+
+    // Add live validation for the ID number field for better UX
+    idInput.addEventListener('input', function() {
+        if (idInput.validity.patternMismatch) {
+            idError.textContent = 'ID number must be 13 digits.';
+        } else {
+            idError.textContent = '';
+        }
     });
 });
 
