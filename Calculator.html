@@ -11,74 +11,90 @@
     <!--<meta property="og:image" content="images/social-preview.png">  IMPORTANT: Create and add a preview image -->
     <meta property="og:url" content="https://www.liftofflending.co.za/calculator"> <!-- IMPORTANT: Replace with your actual live URL -->
     <meta property="og:type" content="website">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Varela+Round&display=swap" rel="stylesheet">
     <title>Calculate Loan</title>
 </head>
 <style>
- .navigationBar{ 
-list-style-type:none;
+  .navigationBar{ 
+list-style-type: none;
 margin: 0;
-padding: 0;
 overflow: hidden;
 position: fixed;
-font-family: Arial, sans-serif;
-z-index: 1000;
+font-family: sans-serif, oswald;
 width: 100%;
 }
 
 .navigationBar ul{
 list-style: none;
 margin: 0 ;
-margin-right: 2px;
-padding: 12px;
+padding: 0;
 top:0;
-overflow: hidden;
+left: 0; /* Ensure it aligns to the far left */
+overflow: inherit;
 position: fixed;
 width: 100%;
+background-color: white;
+display: flex; /* Use flexbox for alignment */
 }
 
 .navigationBar li{
-    float: left ;
+    float: left;
+    font-size: 20px;
   }
 
 .navigationBar li a{
     display: block;
-    color: black;
+    color: #0541aa;
     text-align: center;
     padding: 14px 16px;
-    text-decoration: underline;
+    font-weight: lighter;
   }
 .navigationBar li a:hover:not(.active){
-    background-color:goldenrod;
+    background-color:  #00C4CC;
     cursor: pointer;
   }
+
 
 .footer{
     left: 0;
     overflow: hidden;
     height: 40%;
     width: 100%;
-    padding: 0;
-    margin: 0;
-    font-family: Arial, sans-serif;
+    padding: 8px 16px;
+    align-items: center;
+    margin: 6px 0 0 0;
+    font-family: "roboto", sans-serif;
   }
-.footer li a{
-    display: block;
-    color: black;
-    text-align: center;
-  }
-  .footer li{
-    display: block;
-    color: black;
-    text-align: center;
-    padding: 4px 6px;
-    
-  }
+
   .footer p{
     color: white;
     text-align: center;
-    padding: 3px;
-    font-size: 7px;
+    padding: 10px;
+    font-family: "roboto", sans-serif;
     font-weight: lighter;
+    font-size: 12px;
+  }
+  
+
+.footer li a{
+    display:flex;
+    align-items: center;
+    color: whitesmoke;
+    text-align: center;
+    padding: 2px 8px;
+    font-size: 20px;
+    font-family: "roboto", sans-serif;
+    font-weight: lighter;
+  }
+  .footer li{
+    display: flex;
+    align-items: center;
+    color: whitesmoke;
+    text-align: center;
+    padding: 4px 6px;
+    font-size: 20px;
+    font-family: "roboto", sans-serif;
+    font-weight: light;
   }
   .footer img{
     width: 20px;
@@ -87,56 +103,49 @@ width: 100%;
     margin-right: 5px;
 
   }
+  .footer tel{
+    font-weight: lighter;
+    font-size: 20px;
+  }
+  .footer ul{
+    display: flex;
+    justify-content: center;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 130px;
+    font-size: 20px;
+    font-weight: lighter;
   
+  }
+  .varela-round-regular {
+  font-family: "Varela Round", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-uniquifier {
+  font-family: "Roboto", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings: "wdth" 100;
+}
 body {
-      font-family: Arial, sans-serif;
       padding: 20px;
       padding-top: 70px;
-      background-color: #f5f5f5ec;
-      background-image: url('images/LiftOff Poster (1).png');
-      background-repeat: no-repeat;
-      background-size: cover;
-      background-attachment: inherit;
-      color: #333;
-      font-weight: bold;
+      background: linear-gradient(140deg, #00C4CC 0%, #0A1A44 100%);
+      background-attachment: fixed;
+      font-weight: 150;
+      font-family: "roboto", sans-serif;
+
     }
-    h2 {
-      color: black;
+    h1 {
+      color: white;
       text-align: center;
-    }
-
-    /* Slider + Term */
-    .input-group {
-      margin-bottom: 5px;
-      padding-left: 45px;
-      padding-bottom: 5px;
-      padding-right: 40px;
-    
-    }
-  .input-group p{
-    font-weight: normal;
-    align-items: left;
-    font-size: 0.7em;
-  }
-
-    .input-group label {
-      display: block;
-      margin-bottom: 5px;
-      font-weight:bold;
-      align-items: left;
-    }
-    .input-group input[type="range"],
-    .input-group input[type="number"] 
-    {
-      width: 50px;
-      align-items: left;
-    }
-    .input-group span.value{
-      margin-left: 10px;
-    }
-    .input-group span.value {
-      margin-left: 10px;
-      font-weight: lighter;
+      font-family: "roboto", sans-serif;
+      font-size: 70px;
+      font-weight: bolder;
     }
 
     button.calc-btn {
@@ -147,30 +156,111 @@ body {
       border: none;
       cursor: pointer;
       font-size: 1rem;
+      align-content: center;
+      border-radius: 50px; /* Make the button rounder */
+    
+    }
+
+   a{
+    color: white;
+    text-decoration: none;
+   }
+   
+    /* Slider + Term */
+        /* Slider + Term */
+    .input-group {
+      margin-bottom: 15px;
+      padding-left: 45px;
+      padding-bottom: 15px;
+      padding-right: 40px;
+      color: white;
+      border-radius: 8px;
+
+    }
+    .input-group p{
+    font-weight: 100;
+    align-items: left;
+    font-size: 20px;
+    color:  white;
+    font-family: "roboto", sans-serif;
+    margin-top: 50px;
+  }
+    .input-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
       align-items: center;
+      font-family: "roboto", sans-serif;
+      font-weight: 100;
+      font-size: 20px;
+      text-align: center;
+    }
+    .input-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .input-group input[type="range"],
+    .input-group input[type="number"] 
+    {
+      width: 100%;
+      padding: 5px;
+      font-size: 15px;
+      border-radius: 4px;
+      font-family: "roboto", sans-serif;
+      font-weight: 100;
+      text-align: center;
+      align-items: center;
+      border: 1px solid #ccc;
+    }
+    .input-group span.value{
+      margin-left: 10px;
+      font-weight: lighter;
+      font-family: "roboto", sans-serif;
+      padding-top: 25px;
+      margin-top: 15px;
+    }
+    .input-group span.value {
+      margin-left: 0;
+      font-weight: 100;
+      font-size: 1.2rem;
+      font-family: "roboto", sans-serif;
+      padding-top: 10px;
+    }
+
+    button.calc-btn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #00C4CC;
+      color: black;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+      align-items: center;
+      border-radius: 50px; /* Make the button rounder */
     }
    
     /* Results panel styling */
     .results {
-      max-width: 400px;
-      background-color: #e2e8ef;
+      max-width: 500px;
       border: 1px solid #ddd;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      padding: 30px;
+      padding: 50px;
+      padding-right: 50px;
       margin-top: 30px;
       display: none;
     }
     .results .estimate-label {
       text-align: center;
       font-size: 0.9rem;
-      color: #666;
+      color: white;
       margin-bottom: 10px;
     }
     .results .estimate-amount {
       text-align: center;
       font-size: 2.5rem;
       margin-bottom: 20px;
-      color: #222;
+      color:white;
     }
     .results hr {
       border: none;
@@ -180,7 +270,7 @@ body {
     .results .include-label {
       font-size: 0.9rem;
       margin-bottom: 10px;
-      color: #666;
+      color: white;
     }
     .results .breakdown {
       margin-bottom: 20px;
@@ -188,70 +278,85 @@ body {
     .results .breakdown .line-item {
       display: flex;
       justify-content: space-between;
+      align-items: center; /* Vertically align items */
       margin: 5px 0;
       font-size: 0.95rem;
       font-weight: normal;
+      color: white;
     }
-    .results .disclaimer {
+    .results .breakdown .line-item span:first-child {
+      flex-basis: 60%; /* Give the label a consistent width */
+      text-align: left;
+    }
+    .disclaimer {
       font-size: 0.8rem;
-      color: #999;
+      color: white;
       margin-bottom: 20px;
       line-height: 1.4;
       text-align: center;
+      font-family: "roboto", sans-serif;
+      font-weight: lighter;
     }
     .results .apply-btn {
       display: block;
       width: 100%;
       padding: 10px;
-      background-color: goldenrod;
+      background-color: #00C4CC;
       color: black;
       font-size: 1rem;
       text-align: center;
       border: none;
       cursor: pointer;
+      border-radius: 50px; /* Make the button rounder */
     }
-      main.Calculator-Holder {
+    main.Calculator-Holder {
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
         padding: 20px;
-        background-color: #e2e8ef;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         margin-top: 20px;
       }
 
-      /* responsive design */
+  /* responsive design */
   @media (max-width: 932px)
   {
-    body{
-      padding-left: 10px;
-      padding-right: 10px;
+    body {
+      padding-left: 20px;
+      padding-right: 20px;
     }
-    .navigationBar ul{
+    .navigationBar ul {
       padding: 0;
-      
+      justify-content: center;
     }
-    .navigationBar li a{
+    .navigationBar li a {
       text-align: center;
-      padding: 10px;;
+      padding: 10px;
+      font-size: 14px;
     }
-
-    .landingContent h1{
-      font-size: 38px;
+    h1 {
+      font-size: 32px;
     }
-    .landingContent ul, .landingContent-steps ul{
-      font-size: 18px;;
-    }
-    .footer ul{
+    .footer ul {
       flex-direction: column;
+      align-items: center;
+      gap: 15px;
     }
-    .footer li{
+    .footer li {
       margin-bottom :15px;
+      font-size: 14px;
+    }
+    .footer li a {
+      font-size: 14px
+    }
+    .footer tel{
+      font-size: 14px;
     }
   }
-</style>
+  </style>
+
 <body>
     <header>
     <nav class="navigationBar">
@@ -262,38 +367,49 @@ body {
             </ul>
         </nav>
   </header>
-    <h2>Use our loan repayment calculator to see how much credit you could get!</h2>
+    <h1>Use our loan repayment calculator to see how much credit you could get!</h1>
+    <br>
+    <br>
+    <br>   
 <main class="Calculator-Holder">
   <div class="input-group">
     <label for="loanSlider">How much would you like to borrow?</label>
-    <input
-    aria-labelledby="loanAmountDisplay"
-      type="number"
-      id="loanSlider"
-      min="500"
-      max="15000"
-      step="100"
-      value="1000"
-    />
-    <span class="value" id="loanAmountDisplay" aria-live="polite">R 1,000</span>
+    <div class="input-wrapper">
+      <input
+      aria-labelledby="loanAmountDisplay"
+        type="number"
+        id="loanSlider"
+        min="500"
+        max="15000"
+        step="100"
+        value="1000"
+      />
+      <span class="value" id="loanAmountDisplay" aria-live="polite">R 1,000</span>
+    </div>
     <p class="input-group"><i>Choose an amount between R500 - R15,000</i></p>
   </div>
   <div class="input-group">
     <label for="termMonths">Over how many months do you want to repay this loan?</label> <!-- make dots slection dots-->
-    <input
-      aria-labelledby="termMonthsDisplay"
-      type="range"
-      id="termMonths"
-      min="1"
-      max="6"
-      value="6"
-      style="width:100px; margin-left: 10px;"
-    />
-    <span class="value" id="termMonthsDisplay" aria-live="polite">6 months </span>
+    <div class="input-wrapper">
+      <input
+        aria-labelledby="termMonthsDisplay"
+        type="range"
+        id="termMonths"
+        min="1"
+        max="6"
+        value="6"
+        style="width:200px;"
+      />
+      <span class="value" id="termMonthsDisplay" aria-live="polite">6 months </span>
+    </div>
   </div>
 
   <button type="button" class="calc-btn" id="calculateBtn">Show repayment</button>
-
+  <br>
+  <br>
+ <div class="disclaimer">
+      The amount we can lend you depends on your credit and affordability assessment
+    </div>
   <div class="results" id="results">
     <div class="estimate-label">Estimated monthly repayment will be</div>
     <div class="estimate-amount">R <span id="monthlyRepaymentValue">0.00</span><p>
@@ -303,7 +419,7 @@ body {
     <div class="breakdown">
         <div class="line-item">
         <span>Initiation fee (once-off)</span>
-        <span>R <span id="initiationFeeResult">60.00</span></span>
+        <span>R <span id="initiationFeeResult">0.00</span></span>
       </div>
       <div class="line-item">
         <span>Service fee</span>
@@ -315,19 +431,16 @@ body {
       </div>
       <div class="line-item">
         <span>Total amount repayable</span>
-        <span>R <span id="totalRepaymentResult">0.00</span></span>
+        <span>R <span id="totalRepaymentResult"> 0.00</span></span>
       </div>
     </div>
     <hr>
-    <div class="disclaimer">
-      The amount we can lend you depends on your credit and affordability assessment
-    </div>
     <button class="apply-btn" onclick="window.location.href='Application-form.html';">Apply Now</button>
   </div>
 </main>
 
   <script>
-    // Sync slider display
+    //Sync slider display
     const slider = document.getElementById('loanSlider');
     const sliderDisplay = document.getElementById('loanAmountDisplay');
     const calculateButton=document.getElementById('calculateBtn');
@@ -343,55 +456,79 @@ body {
       termDisplay.textContent = termSlider.value; // Corrected: Display the value
     });
 
-
     calculateButton.addEventListener('click', calculateLoan);
+
     function calculateLoan() {
       const loanAmount = parseFloat(document.getElementById('loanSlider').value);
       const termMonths = parseInt(document.getElementById('termMonths').value, 10);
 
-      const tiers = [
-        { min: 500, max: 1400, interest: 0.07, serviceFee: 0.14 },
-        { min: 1401, max: 5000, interest: 0.06, serviceFee: 0.13 },
-        { min: 5001, max: 9000, interest: 0.04, serviceFee: 0.12 },
-        { min: 9001, max: 15000, interest: 0.03, serviceFee: 0.11 },
-      ];
-      const initiationFee = 60;
-      const VAT_RATE = 0.15;
-
-      const tier = tiers.find(t => loanAmount >= t.min && loanAmount <= t.max);
-
-      if (!tier) {
-        alert("Loan amount is not a valid amount.");
+      if (isNaN(loanAmount) || isNaN(termMonths) || loanAmount < 500 || loanAmount > 15000) {
+        alert("Please enter a valid loan amount between R500 and R15,000.");
         return;
       }
 
-      const interest = loanAmount * tier.interest * termMonths / 12; // Interest is calculated based on the term in months
-      const serviceFee = loanAmount * tier.serviceFee;
-      const totalExcludingVat = loanAmount + serviceFee + initiationFee;
-      const vatOnFees= (serviceFee +initiationFee) * VAT_RATE;
-      const totalRepayment = loanAmount +interest+serviceFee + initiationFee +vatOnFees;
-      const monthlyRepayment = totalRepayment / termMonths;
+      const VAT = 0.15;
+      const initiationBase = 165; // loan amount less than 1000
+      const initiationCap = 1050; // loan amount more than 1000 
+      const monthlyServiceFee = 60; // per month
+      const monthlyInterestRate = 0.0318;
+
+      // Initiation fee (with VAT)
+      let initiationFee = initiationBase + Math.max(0, (loanAmount - 1000) * 0.1);
+      initiationFee = Math.min(initiationFee, initiationCap);
+      initiationFee *= (1 + VAT);
+
+      // Total Service fees for the term (with VAT)
+      const totalServiceFees = termMonths * monthlyServiceFee * (1 + VAT);
+
+      // Total Interest for the term (no VAT)
+      const totalInterest = loanAmount * monthlyInterestRate * termMonths;
+
+      // Totals
+      const totalDue = loanAmount + initiationFee + totalServiceFees + totalInterest;
+      const monthlyRepayment = totalDue / termMonths;
 
       document.getElementById('monthlyRepaymentValue').innerText = monthlyRepayment.toFixed(2);
-      document.getElementById('serviceFeeResult').innerText = serviceFee.toFixed(2);
+      document.getElementById('serviceFeeResult').innerText = (totalServiceFees / termMonths).toFixed(2); // Display monthly service fee
       document.getElementById('initiationFeeResult').innerText = initiationFee.toFixed(2);
-      document.getElementById('vatResult').innerText = vatOnFees.toFixed(2);
-      document.getElementById('totalRepaymentResult').innerText = totalRepayment.toFixed(2);
+      document.getElementById('vatResult').innerText = ((initiationFee + totalServiceFees) - ((initiationFee + totalServiceFees) / (1 + VAT))).toFixed(2);
+      document.getElementById('totalRepaymentResult').innerText = totalDue.toFixed(2);
       document.getElementById('results').style.display = 'block';
     }
+      
   </script>
-</body>
-<main>
-<!--<footer class="footer">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<footer class="footer">
 <ul>
-  <li>Number:<br><img src="icons/telephone.png"><tel>060 519 4972</tel></li>
-  <li> Email:<br><a href="mailto:admin@liftofflending.co.za"><img src="icons/email.png">admin@liftofflending.co.za</a></li>
-  <li> <a href="/legal documents/Privacy Statement.pdf">Privacy Statement</a></li>
-  <li> <a href="/legal documents/Terms and Conditions.pdf">Terms and Conditions</a></li>
+  <li><tel>060 519 4972</tel></li>
+  <li><a href="mailto:admin@liftofflending.co.za">admin@liftofflending.co.za</a></li>
+  <li><a href="/legal documents/Privacy Statement.pdf">Privacy Statement</a></li>
+  <li><a href="/legal documents/Terms and Conditions.pdf">Terms and Conditions</a></li>
 </ul>
- <p>Lift Off Lending (Pty) Ltd is a registered credit provider NCRCP 1234.</p>
- <p>Copyright © 2024 Lift Off Lending. All rights reserved.</p>
+ <p>Lift Off Lending (Pty) Ltd is a registered credit provider</p>
 </footer>
-</main>
 </body>
 </html>
