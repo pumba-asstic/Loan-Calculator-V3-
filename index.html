@@ -60,13 +60,12 @@ display: flex; /* Use flexbox for alignment */
   }
 
 .footer{
-    left: 0;
     overflow: hidden;
     height: 40%;
     width: 100%;
     padding: 8px 16px;
     align-items: center;
-    margin: 0;
+    margin: 6px 0 0 0;
     font-family: "roboto", sans-serif;
   }
 
@@ -76,7 +75,7 @@ display: flex; /* Use flexbox for alignment */
     padding: 10px;
     font-family: "roboto", sans-serif;
     font-weight: lighter;
-    font-size: 12px;
+    font-size: 20px;
   }
   
 
@@ -87,7 +86,7 @@ display: flex; /* Use flexbox for alignment */
     text-align: center;
     padding: 2px 8px;
     font-family: "roboto", sans-serif;
-    font-weight: light;
+    font-weight: lighter;
     font-size: 20px;
     
   }
@@ -96,7 +95,7 @@ display: flex; /* Use flexbox for alignment */
     align-items: center;
     color: whitesmoke;
     text-align: center;
-    padding: 2px 8px;
+    padding: 4px 6px;
     font-family: "roboto", sans-serif;
     font-weight: lighter;
     font-size: 20px;
@@ -116,8 +115,8 @@ display: flex; /* Use flexbox for alignment */
   .footer ul{
     display: flex;
     justify-content: center;
-    list-style-type: none;
-    padding: 2px 8px;
+    list-style-type: none; 
+    padding: 0;
     margin: 0;
     gap: 130px;
     font-size: 20px;
@@ -245,7 +244,7 @@ body {
     text-align: right;
     padding-left: 20px;
     padding-right: 45px;
-    background-position: right 15px top 25px; /* Align icon to the top */
+    background-position: right 15px top 20px; /* Align icon to the top */
     font-family: "roboto", sans-serif;
     font-weight: 300;
    }
@@ -333,7 +332,7 @@ body {
     content: counter(steps-counter); /* Display the counter value */
     position: absolute;
     left: 15px;
-    top: 20px; /* Position from the top of the list item */
+    top: 17px; /* Position from the top of the list item */
     transform: none; /* Remove the vertical centering transform */
     width: 40px;
     height: 40px;
@@ -499,7 +498,7 @@ body {
         padding: 20px;
         border-radius: 10px;
         box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-        margin-top: 20px;
+        margin-top: 155px;
       }
 
   /* responsive design */
@@ -521,11 +520,13 @@ body {
     .hero-section, .empower-section {
       flex-direction: column;
       text-align: center;
-      gap: 20px;
+      gap: 0.1rem;
     }
     .LandingText, .empower-section h1, .landingContent h2 {
       font-size: 48px;
       text-align: center;
+      margin-top: 35px;
+      margin-bottom: 35px
     }
     .HeroSubText, .empower-section p {
       font-size: 20px;
@@ -560,6 +561,9 @@ body {
       margin-bottom :15px;
       font-size: 12px;
     }
+  .footer tel{
+    font-size: 12px;
+    }
   .footer a{
     font-size: 12px;
   }
@@ -585,7 +589,7 @@ body {
 
     <div class="hero-section">
       <div class="hero-text-container">
-        <p class="LandingText">Find Out What Your Monthly Repayment Could Be</p>
+        <p class="LandingText">Find Out What Your Monthly Repayment <br> Could Be</p>
         <p class="HeroSubText">Plan your loan before you apply. Quick, transparent and NCR-compliant.</p>
       </div>
       <main class ="Calculator-Holder">
